@@ -53,6 +53,10 @@
             android:name=".OTHERActivity"
             android:label="@string/title_activity_other" >
         </activity>
+        <activity
+            android:name=".Mine_MissionActivity"
+            android:label="@string/title_activity_mine__mission" >
+        </activity>
     </application>
 
 </manifest>
