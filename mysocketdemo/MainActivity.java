@@ -1,7 +1,8 @@
+//登录界面（初始界面）
 package com.example.mysocketdemo;
 
 import android.app.Activity;
-import android.app.PendingIntent;
+//import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 //import android.app.Notification;
-import android.app.NotificationManager;
-import android.support.v4.app.NotificationCompat;
+//import android.app.NotificationManager;
+//import android.support.v4.app.NotificationCompat;
 
 public class MainActivity extends Activity {
     static final int CMD_STOP_SERVICE = 0x01;  
@@ -24,7 +25,7 @@ public class MainActivity extends Activity {
     static final int CMD_RECEIVE_DATA = 0x03;  
     static final int CMD_SHOW_TOAST =0x04; //预定义的命令
 	private TextView tv;
-	private Button button_send, button_connect;
+	private Button button_send, button_connect,button_login,button_regist;
 	private EditText edit_send,edit_IP;  //用户输入控件
 	private Handler mHandler;
 //	boolean stop = true;
@@ -67,10 +68,33 @@ public class MainActivity extends Activity {
                 sent(msgBuffer);
                 Toast.makeText(getApplicationContext(), "发送成功", Toast.LENGTH_SHORT).show();
 //                ed_message.setText("");
-                sendNotification();
+//                sendNotification();
             }
         });
-         
+        //登录,若成功则进入任务页面
+        button_login.setOnClickListener(new View.OnClickListener() {            
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                //当点击按钮时,会获取编辑框中的数据,然后提交给线程
+            	byte[]  msgBuffer = null;
+            	msgBuffer = edit_send.getText().toString().getBytes();
+                sent(msgBuffer);
+                Toast.makeText(getApplicationContext(), "登录", Toast.LENGTH_SHORT).show();
+    			Intent intent =new Intent(MainActivity.this,SearchActivity.class);
+    			startActivity(intent);	
+            }
+        });
+      //注册
+        button_regist.setOnClickListener(new View.OnClickListener() {            
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                //当点击按钮时,会获取编辑框中的数据,然后提交给线程
+    			Intent intent =new Intent(MainActivity.this,RegistActivity.class);
+    			startActivity(intent);	
+            }
+        });
         //在连接和发送数据之后，接下来就是处理了,发送的数据会通过message的方式传递到消息队列,再由handl进行获取
         mHandler = new Handler(){
             public void handleMessage(android.os.Message msg) {
@@ -81,23 +105,6 @@ public class MainActivity extends Activity {
         };
     }
 	
-    private void sendNotification() {
- 	   //获取NotificationManager实例
- 	   NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
- 	   //实例化NotificationCompat.Builde并设置相关属性
- 	   NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
- 	           //设置小图标
- 	           .setSmallIcon(R.drawable.ic_launcher)
- 	           //设置通知标题
- 	           .setContentTitle("最简单的Notification")
- 	           //设置通知内容
- 	           .setContentText("只有小图标、标题、内容");
- 	           //设置通知时间，默认为系统发出通知的时间，通常不用设置
- 	           //.setWhen(System.currentTimeMillis());
- 	   //通过builder.build()方法生成Notification对象,并发送通知,id=1
- 	   notifyManager.notify(1, builder.build());
- 	}
-
 
 	public void connect() {   //连接服务器，启动Service
 		Intent intent = new Intent(MainActivity.this,NetService.class); 
@@ -124,6 +131,8 @@ public class MainActivity extends Activity {
 		button_connect = (Button) findViewById(R.id.btn_conn);
 		button_connect.setEnabled(true);
 		button_send.setEnabled(false);
+		button_login = (Button) findViewById(R.id.button_login);
+		button_regist = (Button) findViewById(R.id.button_regist);
 	}
 
 	public class MyReceiver extends BroadcastReceiver { //接收service传来的信息
