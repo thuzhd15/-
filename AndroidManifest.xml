@@ -7,21 +7,71 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
-  <uses-permission android:name="android.permission.INTERNET"></uses-permission>  
-  <uses-permission android:name="android.permission.VIBRATE"/> 
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <service android:name=".NetService"></service>
+        <service android:name="com.example.lazy_man_client.NetService" >
+        </service>
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.lazy_man_client.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.RegistActivity"
+            android:label="@string/title_activity_regist" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.MissionActivity"
+            android:label="@string/title_activity_mision" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.JIAFActivity"
+            android:label="@string/title_activity_jiaf" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.YIFActivity"
+            android:label="@string/title_activity_yif" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.OTHERActivity"
+            android:label="@string/title_activity_other" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.Mine_MissionActivity"
+            android:label="@string/title_activity_mine__mission" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.AdDetailActivity"
+            android:label="@string/title_activity_ad_detail" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.AdoptTaskActivity"
+            android:label="@string/title_activity_adopt_task" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.ReDetailActivity"
+            android:label="@string/title_activity_re_detail" >
+        </activity>
+        <activity
+            android:name="com.example.lazy_man_client.ReleaseTaskActivity"
+            android:label="@string/title_activity_release_task" >
         </activity>
     </application>
 

@@ -1,0 +1,38 @@
+一些常用的bash/shell命令在git bash窗口中都可以使用，比如：vim进入文档编辑，:wq保存并退出……
+
+git status 查看当前状态（是否有新修改的文件）
+git add 文件名 把新建或修改的文件放入缓冲区
+git add -A 把所有新建或修改的文件放入缓冲区
+git commit 提交
+-m “注释内容”
+-e -> 编辑注释内容
+
+查看分支：git branch
+
+创建分支：git branch <branch_name>
+
+切换分支：git checkout <branch_name>
+
+创建+切换分支：git checkout -b <branch_name>
+
+合并某分支到当前分支：git merge <branch_name>
+
+快速模式合并：在DBMA分支下执行git merge zhd，表示把zhd分支合并到DBMA分支
+
+普通模式合并（记录合并历史）：git merge --no-ff -m "merge with no-ff" <branch_name>
+
+删除分支：git branch -d <branch_name>
+
+克隆远程仓库到本地仓库：git clone git@github.com:thuzhd15/lazymen.git（thuzhd15替换为自己的用户名）
+连接本地仓库与远程仓库 git remote add origin git@github.com:thuzhd15/lazymen.git （这个命令可以不用了，直接clone就已经连接上了）
+
+查看远程库信息，使用git remote -v；
+
+在本地创建和远程分支对应的分支（并切换到创建的分支），使用git checkout -b branch-name origin/<branch-name>，本地和远程分支的名称最好一致。
+
+建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/<branch-name>。
+
+从本地推送分支，使用git push origin <branch-name>，如果推送失败，先用git pull抓取远程的新提交（亲测git pull后什么都不加可以把所有分支抓取下来）。
+当然也可以git pull origin <branch-name> 只拉取特定分支。
+
+从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
