@@ -21,11 +21,11 @@ public class Usr {
     private String UsrName;//用户名
     private String TeleNumber;//电话号码
     private String Email;//邮箱
-    private String Address1;//地址1
+    private int Address1;//地址1
     private String RealName;//姓名
     private String School;//院系
-    private String Address2;//地址2
-    private String Address3;//地址3
+    private int Address2;//地址2
+    private int Address3;//地址3
     private int Coins;//金币
     private int Credit;//信誉
     private String[] addr_list; // 所有地址的列表
@@ -40,9 +40,9 @@ public class Usr {
         UsrID="";
         UsrName="";
         RealName="";
-        Address1="";
-        Address2="";
-        Address3="";
+        Address1 = 0;
+        Address2 = 0;
+        Address3 = 0;
         TeleNumber="";
         Email="";
         School="";
@@ -71,9 +71,9 @@ public class Usr {
     public String GetUsrID(){return UsrID;}
     public String GetUsrName(){return UsrName;}
     public String GetRealName(){return  RealName;}
-    public String GetAddress1(){return Address1;}
-    public String GetAddress2(){return Address2;}
-    public String GetAddress3(){return Address3;}
+    public int GetAddress1(){return Address1;}
+    public int GetAddress2(){return Address2;}
+    public int GetAddress3(){return Address3;}
     public String GetTeleNumber(){return TeleNumber;}
     public String GetEmail(){return Email;}
     public String GetSchool(){return School;}
@@ -85,9 +85,9 @@ public class Usr {
     public void SetUsrID(String ID){UsrID=ID;}
     public void SetUsrName(String name){UsrName=name;}
     public void SetRealName(String name){RealName=name;}
-    public void SetAddress1(String add1){Address1=add1;}
-    public void SetAddress2(String add2){Address2=add2;}
-    public void SetAddress3(String add3){Address3=add3;}
+    public void SetAddress1(int add1){Address1=add1;}
+    public void SetAddress2(int add2){Address2=add2;}
+    public void SetAddress3(int add3){Address3=add3;}
     public void SetTeleNumber(String tele){TeleNumber=tele;}
     public void SetEmail(String email){Email=email;}
     public void SetSchool(String school){School=school;}
@@ -156,7 +156,7 @@ public class Usr {
                 case "05":
                     //地址1
                     String add1 = cut(strr);
-                    this.Address1 = add1;
+                    this.Address1 = Integer.valueOf(add1);
                     break;
                 case "06":
                     //姓名
@@ -171,12 +171,12 @@ public class Usr {
                 case "09":
                     //地址2
                     String add2 = cut(strr);
-                    this.Address2 = add2;
+                    this.Address2 = Integer.valueOf(add2);
                     break;
                 case "10":
                     //地址3
                     String add3 = cut(strr);
-                    this.Address3 = add3;
+                    this.Address3 = Integer.valueOf(add3);
                     break;
                 case "11":
                     //金币
