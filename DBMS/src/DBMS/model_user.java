@@ -53,7 +53,7 @@ public class model_user {
 			modify_info(); // modify the user information
 			break;
 		case "03":
-			addr_list();
+			get_info(); // get the user info and the address list
 			break;
 		default:
 			str_out += "&001"; // command error
@@ -122,6 +122,7 @@ public class model_user {
 			rs = stmt.executeQuery(query);
 			if (rs.next()) {
 				str_out += "&005"; // if be the same as some of the existed users
+				System.out.println("uno or user_name is not unique!");
 				return;
 			}
 			
@@ -189,34 +190,17 @@ public class model_user {
 		ResultSet rs;
 		
 		try {
-			query = "select * from user where user_name=" + "'"+user_name+"'" + " and pw=" + "'"+pw+"'";			
+			query = "select uno from user where user_name=" + "'"+user_name+"'" + " and pw=" + "'"+pw+"'";			
 			System.out.println(query); // test			
 			rs = stmt.executeQuery(query);
 			if (rs.next()) {
-				// to acquire the first-hand info
+				// to acquire the user id
 				uno = rs.getString("UNO");
-				user_name = rs.getString("user_name");
-				tel = rs.getString("tel");
-				mail = rs.getString("mail");
-				name = rs.getString("name");
-				school = rs.getString("school");
-				coins = Integer.valueOf(rs.getString("coins"));
-				credit = Integer.valueOf(rs.getString("credit"));
-				// to acquire the address names
-				add_str1 = rs.getString("address1");
-				add_str2 = rs.getString("address2");
-				add_str3 = rs.getString("address3");
-				
-				// now we don't need to acquire the address
-
 				// output string
-				str_out += "&000" + "&01" + uno + "&02" + user_name + "&03" + tel;
-				str_out += "&04" + mail + "&05" + add_str1 + "&06" + name;
-				str_out += "&08" + school + "&09" + add_str2;
-				str_out += "&10" + add_str3 + "&11" + coins + "&12" + credit;
-
-			} else { // if user_name and password are wrong
+				str_out += "&000&01" + uno;
+			} else { // if user_name and password are wrong				
 				str_out += "&005";
+				System.out.println("The user_name or password are wrong!");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -297,25 +281,61 @@ public class model_user {
 			return false;
 	}
 	
-	public void addr_list() { // address list
+	public void get_info() { // get the user info and the address list
+		String query;
 		ResultSet rs;
 		int add_id; //index
 		int rnum = 0; //地址列表所需行数（应取索引最大值+1）
 		String add_name; //address name
+		String str1, str2; // the part1 & part2
 		
-		str_out = ""; //重置为空字符串，因为循环过后需要在指令类型和字符串之间插入东西！		
+		str1 = ""; // the user_info
+		str2 = ""; // the address list
+		
 		try {
-			String query = "select * from address";
+			// the user_info
+			query = "select * from user where UNO=" + "'" + uno + "'";
+			System.out.println(query); // test
+			rs = stmt.executeQuery(query);
+			if (rs.next()) {
+				uno = rs.getString("UNO");
+				user_name = rs.getString("user_name");
+				tel = rs.getString("tel");
+				mail = rs.getString("mail");
+				name = rs.getString("name");
+				school = rs.getString("school");
+				coins = Integer.valueOf(rs.getString("coins"));
+				credit = Integer.valueOf(rs.getString("credit"));
+				add_str1 = rs.getString("address1");
+				add_str2 = rs.getString("address2");
+				add_str3 = rs.getString("address3");
+				// now we don't need to acquire the address_name
+
+				// the first part of str_out
+				str1 += "&01" + uno + "&02" + user_name + "&03" + tel 
+						+ "&04" + mail + "&05" + add_str1 + "&06" + name + "&08" + school 
+						+ "&09" + add_str2 + "&10" + add_str3 + "&11" + coins + "&12" + credit;
+			} else { // if uno is wrong
+				str_out += "&005";
+				System.out.println("UNO is wrong!");
+				return;
+			}
+
+			// the address list
+			query = "select * from address";
 			System.out.println(query); // test
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				add_id = Integer.valueOf( rs.getString("add_id") );				
-				add_name = rs.getString("add_name");				
-				if(add_id > rnum)
-					rnum = add_id;				
-				str_out += "&20"+add_id+"&21"+add_name;				
+				add_id = Integer.valueOf(rs.getString("add_id"));
+				add_name = rs.getString("add_name");
+				if (add_id > rnum)
+					rnum = add_id;
+				str2 += "&20" + add_id + "&21" + add_name;
 			}
-			str_out = "&03&000&19" + (rnum+1) + str_out;
+			str2 = "&19" + (rnum + 1) + str2; // the second part of str_out
+
+			str_out += "&000" + str1 + str2;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			str_out = "&03&003";
