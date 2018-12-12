@@ -79,19 +79,19 @@ public class Usr {
     public String GetSchool(){return School;}
     public int GetCoins(){return Coins;}
     public int GetCredit() {return Credit;}
+    public String[] GetAddrList() {return addr_list;}
 
     //修改用户信息
-    /*public void SetUsrID(String ID){UsrID=ID;}
+    public void SetUsrID(String ID){UsrID=ID;}
     public void SetUsrName(String name){UsrName=name;}
     public void SetRealName(String name){RealName=name;}
-    public void SetSchoolID(String id){SchoolID=id;}
     public void SetAddress1(String add1){Address1=add1;}
     public void SetAddress2(String add2){Address2=add2;}
     public void SetAddress3(String add3){Address3=add3;}
     public void SetTeleNumber(String tele){TeleNumber=tele;}
     public void SetEmail(String email){Email=email;}
     public void SetSchool(String school){School=school;}
-    public void SetCoins(int coins){Coins=coins;}*/
+    public void SetCoins(int coins){Coins=coins;}
 
     //选择拆分方法，方法可自行添加
     public void Initial(String example){
@@ -120,13 +120,14 @@ public class Usr {
     //一般拆分
     public void str2(String example) {
         String[] str = example.split("&");
+        int index = 0; //地址列表的序号（需要定义在循环之前！）
+        
         for (int i = 2; i < str.length; i++) {
             char strr[] = str[i].toString().toCharArray();
             char f[]=new char[2];
             f[0]=strr[0];
             f[1]=strr[1];
             String flag=new String(f);
-            int index = 0; //地址列表的序号
             switch(flag) {
                 case "00":
                     int error_type = Integer.valueOf(str[i]);
@@ -191,6 +192,12 @@ public class Usr {
                 case "19":                	
                 	int num = Integer.parseInt(cut(strr));
                 	this.addr_list = new String[num]; //为地址列表分配空间
+                	
+                	// 字符串数组初始化为每个元素都为空（防止有不存在的索引）；
+                	// 调用者注意在字符串数组中加入对每个字符串元素是否为空的判断，非空者才显示出来且可更改
+                	for(int j=0;j<num;j++)
+                		this.addr_list[j] = "";
+                	
                 	break;
                 case "20":
                 	index = Integer.parseInt(cut(strr)); //记录索引值
