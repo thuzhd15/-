@@ -260,7 +260,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
-            android:id="@+id/infoMineNum"
+            android:id="@+id/infoCoinsNum"
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_marginBottom="1dp"
