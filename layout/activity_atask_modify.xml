@@ -1,0 +1,121 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context="com.example.zhouqian.myapplication.ATaskModify"
+                android:id="@+id/TaskModify">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="任务标题"
+        android:id="@+id/TaskModify_A_1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_TaskName"
+        android:text="                 "
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/TaskModify_A_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:id="@+id/TaskModify_A_Btn_Confirm"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="EditConfirm"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="任务描述"
+        android:id="@+id/TaskModify_A_2"
+        android:layout_below="@+id/TaskModify_A_TaskName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_Content"
+        android:layout_below="@+id/TaskModify_A_TaskName"
+        android:layout_toRightOf="@+id/TaskModify_A_2"
+        android:layout_alignRight="@+id/TaskModify_A_TaskName"
+        android:layout_alignEnd="@+id/TaskModify_A_TaskName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="交接地址"
+        android:id="@+id/TaskModify_A_3"
+        android:layout_below="@+id/TaskModify_A_Content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_Address"
+        android:layout_below="@+id/TaskModify_A_Content"
+        android:layout_toRightOf="@+id/TaskModify_A_3"
+        android:layout_alignRight="@+id/TaskModify_A_Content"
+        android:layout_alignEnd="@+id/TaskModify_A_Content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="交接时间"
+        android:id="@+id/TaskModify_A_4"
+        android:layout_below="@+id/TaskModify_A_Address"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_Time"
+        android:layout_below="@+id/TaskModify_A_Address"
+        android:layout_toRightOf="@+id/TaskModify_A_4"
+        android:layout_alignRight="@+id/TaskModify_A_Address"
+        android:layout_alignEnd="@+id/TaskModify_A_Address"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="悬赏金币"
+        android:id="@+id/TaskModify_A_5"
+        android:layout_below="@+id/TaskModify_A_Time"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_Coins"
+        android:layout_below="@+id/TaskModify_A_Time"
+        android:layout_toRightOf="@+id/TaskModify_A_5"
+        android:layout_alignRight="@+id/TaskModify_A_Time"
+        android:layout_alignEnd="@+id/TaskModify_A_Time"
+        android:text="0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_Info"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
