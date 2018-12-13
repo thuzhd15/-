@@ -1,45 +1,366 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
-    
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:scrollbars="vertical" >
+
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/TaskState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="任务已被领取"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/TaskName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="此处应有甲方任务信息" />
+        android:layout_gravity="right"
+        android:text="N/A"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    
-    <Button
-        android:id="@+id/FinishTask"
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="60dp"
-        android:text="确认收货" />
+        android:layout_marginTop="10dp"
+        android:background="@color/Separator"
+        android:stretchColumns="0" >
 
-    <Button
-        android:id="@+id/AnnulTask"
-        android:layout_width="wrap_content"
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="配送信息"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Separator" />
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="送达时间"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/infoArriTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="N/A"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </TableRow>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Separator" />
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="收货地址"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/infoAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="N/A"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </TableRow>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Separator" />
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="领取人"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/infoRecipient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="N/A"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </TableRow>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/Separator" />        
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/infoPhoneReci"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:autoLink="phone"
+                android:background="#FFFFFF"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="N/A"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </TableRow>        
+        
+    </TableLayout>
+
+    <GridLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/FinishTask"
-        android:layout_alignTop="@+id/FinishTask"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="60dp"
-        android:text="撤销任务" />
+        android:layout_marginTop="10dp"
+        android:alignmentMode="alignMargins"
+        android:background="@color/Separator"
+        android:columnCount="2"
+        android:rowCount="7" >
 
-    <Button
-        android:id="@+id/ModifyTask"
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="订单信息"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="悬赏额"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/infoCoinsNum"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="N/A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_row="2"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="下单时间"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/infoOrderTime"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_row="2"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="N/A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_row="3"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="订单号"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/infoOrderNum"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_row="3"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="N/A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </GridLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/AnnulTask"
-        android:layout_alignTop="@+id/AnnulTask"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="60dp"
-        android:text="修改任务" />
+        android:layout_height="match_parent"
+        android:gravity="bottom" >
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/AnnulTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="撤销任务" />
+
+        <Button
+            android:id="@+id/ModifyTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="修改任务" />
+
+        <Button
+            android:id="@+id/FinishTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="确认收货" />
+
+    </LinearLayout>
+
+</LinearLayout>
