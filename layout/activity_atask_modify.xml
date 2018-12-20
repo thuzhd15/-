@@ -12,38 +12,28 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="任务标题"
+        android:text="重量"
         android:id="@+id/TaskModify_A_1"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
-    <EditText
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/TaskModify_A_TaskName"
-        android:text="                 "
+        android:id="@+id/TaskModify_A_Size"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/TaskModify_A_1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_toLeftOf="@+id/TaskModify_A_Btn_Confirm"
+        android:layout_toStartOf="@+id/TaskModify_A_Btn_Confirm"/>
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="提交"
-        android:id="@+id/TaskModify_A_Btn_Confirm"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="EditConfirm"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="任务描述"
         android:id="@+id/TaskModify_A_2"
-        android:layout_below="@+id/TaskModify_A_TaskName"
+        android:layout_below="@+id/TaskModify_A_Size"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
@@ -51,10 +41,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/TaskModify_A_Content"
-        android:layout_below="@+id/TaskModify_A_TaskName"
+        android:layout_below="@+id/TaskModify_A_Size"
         android:layout_toRightOf="@+id/TaskModify_A_2"
-        android:layout_alignRight="@+id/TaskModify_A_TaskName"
-        android:layout_alignEnd="@+id/TaskModify_A_TaskName"/>
+        android:layout_alignRight="@+id/TaskModify_A_Size"
+        android:layout_alignEnd="@+id/TaskModify_A_Size"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,39 +55,48 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
-    <EditText
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/TaskModify_A_Address"
+        android:id="@+id/TaskModify_A_OutAddress1"
         android:layout_below="@+id/TaskModify_A_Content"
         android:layout_toRightOf="@+id/TaskModify_A_3"
         android:layout_alignRight="@+id/TaskModify_A_Content"
         android:layout_alignEnd="@+id/TaskModify_A_Content"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_OutAddress2"
+        android:layout_above="@+id/TaskModify_A_OutTime"
+        android:layout_toRightOf="@+id/TaskModify_A_Content"
+        android:layout_below="@+id/TaskModify_A_Content"
+        android:focusableInTouchMode="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="交接时间"
         android:id="@+id/TaskModify_A_4"
-        android:layout_below="@+id/TaskModify_A_Address"
+        android:layout_below="@+id/TaskModify_A_OutAddress1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/TaskModify_A_Time"
-        android:layout_below="@+id/TaskModify_A_Address"
+        android:id="@+id/TaskModify_A_OutTime"
+        android:layout_below="@+id/TaskModify_A_OutAddress1"
         android:layout_toRightOf="@+id/TaskModify_A_4"
-        android:layout_alignRight="@+id/TaskModify_A_Address"
-        android:layout_alignEnd="@+id/TaskModify_A_Address"/>
+        android:layout_alignRight="@+id/TaskModify_A_OutAddress1"
+        android:layout_alignEnd="@+id/TaskModify_A_OutAddress1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="悬赏金币"
         android:id="@+id/TaskModify_A_5"
-        android:layout_below="@+id/TaskModify_A_Time"
+        android:layout_below="@+id/TaskModify_A_OutTime"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
@@ -105,11 +104,82 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/TaskModify_A_Coins"
-        android:layout_below="@+id/TaskModify_A_Time"
+        android:layout_below="@+id/TaskModify_A_OutTime"
         android:layout_toRightOf="@+id/TaskModify_A_5"
-        android:layout_alignRight="@+id/TaskModify_A_Time"
-        android:layout_alignEnd="@+id/TaskModify_A_Time"
+        android:layout_alignRight="@+id/TaskModify_A_OutTime"
+        android:layout_alignEnd="@+id/TaskModify_A_OutTime"
         android:text="0"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取快递地址"
+        android:id="@+id/TaskModify_A_6"
+        android:layout_below="@+id/TaskModify_A_Coins"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_InAddress1"
+        android:layout_below="@+id/TaskModify_A_Coins"
+        android:layout_toRightOf="@+id/TaskModify_A_6"
+        android:layout_alignRight="@+id/TaskModify_A_Btn_Confirm"
+        android:layout_alignEnd="@+id/TaskModify_A_Btn_Confirm"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_InAddress2"
+        android:layout_toRightOf="@+id/TaskModify_A_InAddress1"
+        android:layout_below="@+id/TaskModify_A_Coins"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取快递时间"
+        android:id="@+id/TaskModify_A_7"
+        android:layout_below="@+id/TaskModify_A_InAddress1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_InTime"
+        android:layout_below="@+id/TaskModify_A_InAddress1"
+        android:layout_toRightOf="@+id/TaskModify_A_7"
+        android:layout_alignRight="@+id/TaskModify_A_InAddress1"
+        android:layout_alignEnd="@+id/TaskModify_A_InAddress1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="手机尾号"
+        android:id="@+id/TaskModify_A_8"
+        android:layout_below="@+id/TaskModify_A_InTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TaskModify_A_Tele4"
+        android:layout_below="@+id/TaskModify_A_InTime"
+        android:layout_toRightOf="@+id/TaskModify_A_8"
+        android:layout_alignRight="@+id/TaskModify_A_InAddress1"
+        android:layout_alignEnd="@+id/TaskModify_A_InAddress1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:id="@+id/TaskModify_A_Btn_Confirm"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="EditConfirm"/>
 
     <TextView
         android:layout_width="wrap_content"
