@@ -84,45 +84,45 @@ public class Task {
 	public int[] GetOutAddress(){return Out_Address;}
 	public int[] GetOutTime(){return Out_Time;}
 
-   //开头指令主要用于识别字符串传输的页面（&53指令还有一些不同），仍需要添加实现方法
+   //开头指令主要用于识别字符串传输的页面（&54指令还有一些不同），仍需要添加实现方法
    public void Initial(String example){
        String[] str = example.split("&");
        String action = new String();
        switch(str[1]) {
-       case "55":
+       case "56":
     	   str2(example);
     	   break;
        case "50":
            action = "releasetask";//根据数据库数据格式
            str2(example);
            break;
-       case "58":
+       case "51":
     	   str2(example);
     	   break;
        case "59":
     	   str2(example);
     	   break;
-       case "51":
+       case "52":
            action = "modifytask";
            str2(example);
            break;
-       case "52":
+       case "53":
            action = "deletask";
            str2(example);
            break;
-       case "53": //此项特殊，需要进入str1方法解析字符串
+       case "54": //此项特殊，需要进入str1方法解析字符串
            action = "searchtask";
            str1(example);
            break;
-       case "54":
+       case "55":
            action = "accepttask";
            str2(example);
            break;
-       case "56":
+       case "57":
            action = "???";
            str2(example);
            break;
-       case "57":
+       case "58":
            action = "???";
            str2(example);
            break;
