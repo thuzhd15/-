@@ -1,4 +1,4 @@
-package test; // you need to change the package name according to your own project
+package Client; // you need to change the package name according to your own project
 import java.io.*;
 import java.net.*;
 public class client {
@@ -10,39 +10,69 @@ public class client {
         BufferedReader brInFromServer = new BufferedReader(new InputStreamReader(socketClient.getInputStream(),"UTF-8"));
 	    BufferedWriter dosOutToServer = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream(),"UTF-8"));
 	    
+	    int ind_client = 0, ind_dbms = 0;
         do
-        {
+        {       	
         	strLocal = brInFromUser.readLine();
+        	// 从全局变量类中调取字符串发给数据库
+        	if(ind_client >= Data_test.Data_client.length)
+        		break;
+        	strLocal = Data_test.Data_client[ind_client];
+        	//ind_client ++;
+        	
         	System.out.println("Client: " + strLocal);
         	dosOutToServer.write(strLocal + '\n');
         	dosOutToServer.flush();
+        	        	
+        	/**----我是分割线：客户端编程人员的测试部分主要是以下代码！----
+        	 * 
+        	 */
+        	       	
         	strSocket = brInFromServer.readLine();
+        	// 数据库发给客户端信息的测试用例
+        	if(ind_dbms >= Data_test.Data_dbms.length)
+        		break;
+        	strSocket = Data_test.Data_dbms[ind_dbms]; //调整ind_dbms可以选择使用哪一条测试用例
+        	ind_dbms ++;
         	System.out.println("Server: " + strSocket);
-        	
-        	// 下面几行被注释的代码可作为获取用户信息和所有地址列表的测试input
-        	/* strSocket = "&03&000&012015012031&02zhoug15&0312345678901&04zhoug15@mails.tsinghua.edu.cn"
-        	+ "&058&06郝青硕&08水利工程学院&094&103&11100&12100"
-        	+ "&1914&200&21六教6A214&201&21紫荆1号楼&202&21紫荆2号楼&203&21紫荆3号楼&204&21紫荆4号楼&205&21紫荆5号楼"
-        	+ "&206&21紫荆6号楼&207&21紫荆7号楼&208&21紫荆8号楼&209&21紫荆9号楼&2010&21紫荆10号楼&2011&21紫荆11号楼"
-        	+ "&2012&21紫荆12号楼&2013&21紫荆13号楼"; */
-        	
-        	
+        	        	
         	// resolve the string
         	Usr user = new Usr();
          	user.Initial(strSocket);
+         	if( ! user.GetUsrID().isEmpty() ) {
+         		System.out.println("error_type:" + user.GetErrorType() + " " + "UsrID:" + user.GetUsrID() 
+         		+ " " + "UsrName:" + user.GetUsrName() + " " + "RealName:" + user.GetRealName() 
+         		+ " " + "Address1:" + Data_all.Section[ user.GetAddress1()[0] ] 
+         		+ " " +  Data_all.Address[ user.GetAddress1()[0] ][ user.GetAddress1()[1] ] 
+         		+ " " + "Address2:" + Data_all.Section[ user.GetAddress2()[0] ]
+         	    + " " +  Data_all.Address[ user.GetAddress2()[0] ][ user.GetAddress2()[1] ]
+         		+ " " + "Address3:" + Data_all.Section[ user.GetAddress3()[0] ]
+         		+ " " +  Data_all.Address[ user.GetAddress3()[0] ][ user.GetAddress3()[1] ]
+         		+ " " + "TeleNumber:" + user.GetTeleNumber() + " " + "Email:" + user.GetEmail() + " " + "School:" + user.GetSchool()
+         		+ " " + "Coins:" + user.GetCoins() + " " + "Freez_Coins:" + user.GetFreez() + " " + "Credit:" + user.GetCredit() );
+         	}
          	
-         	System.out.println("error_type:" + user.GetErrorType() + " " + "UsrID:" + user.GetUsrID() 
-         	+ " " + "UsrName:" + user.GetUsrName() + " " + "RealName:" + user.GetRealName() 
-         	+ " " + "Address1:" + user.GetAddress1() + " " + "Address2:" + user.GetAddress2() 
-         	+ " " + "Address3:" + user.GetAddress3() + " " + "TeleNumber:" + user.GetTeleNumber()
-         	+ " " + "Email:" + user.GetEmail() + " " + "School:" + user.GetSchool()
-         	+ " " + "Coins:" + user.GetCoins() + " " + "Credit:" + user.GetCredit() );
-         	
-         	String[] addr_list = user.GetAddrList();
-			if (addr_list != null)
-				for (int i = 0; i < addr_list.length; i++) {
-					System.out.println("Address " + i + ": " + addr_list[i]);
-				}
+            // resolve the string
+        	Task task = new Task();
+         	task.Initial(strSocket);
+         	System.out.println(task.GetTNO());
+         	if( task.GetTNO() != -1 ) {
+         		System.out.println("error_type:" + task.GetErrorType() + " " + "TaskID:" + task.GetTNO() 
+         				 + " " + "Taskstate:" + task.GetTaskstate() + " " + "Ismodify:" + task.Ismodify()
+         				 + " " + "User1:" + task.GetUsr1Name() + " " + "User2:" + task.GetUsr2Name() 
+         				 + " " + "User1tele:" + task.GetUsr1Tele() + " " + "User1tele:" + task.GetUsr2Tele()
+         				 + " " + "Size:" + task.GetSize() + " " + "Content:" + task.GetContent()
+         				 + " " + "Last4Tele:" + task.GetLast4Tele() + " " + "Coins:" + task.GetCoins()
+         				 + " " + "Evaluation:" + task.GetEva() 
+         				 + " " + "In_Address:" + Data_all.Section[ task.GetInAddress()[0] ]
+         				 + " " + Data_all.Address[ task.GetInAddress()[0] ][ task.GetInAddress()[1] ]
+         				 + " " + "Out_Address:" + Data_all.Section[ task.GetOutAddress()[0] ]
+         				 + " " + Data_all.Address[ task.GetOutAddress()[0] ][ task.GetOutAddress()[1] ]
+         				 + " " + "In_Time:" + task.GetInTime()[0] + "月 " + task.GetInTime()[1] + "日 " 
+         				 + task.GetInTime()[2] + ":00-" + task.GetInTime()[3] + ":00"
+         				 + " " + "Out_Time:" + task.GetOutTime()[0] + "月 " + task.GetOutTime()[1] + "日 " 
+        				 + task.GetOutTime()[2] + ":00-" + task.GetOutTime()[3] + ":00" );
+         	}
         }
         while(!strSocket.equals("bye"));
         
