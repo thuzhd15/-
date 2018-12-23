@@ -1,3 +1,7 @@
+//个人信息&&任务搜索界面
+
+
+
 package com.example.lazy_man_client;
 
 import java.util.ArrayList;
@@ -246,6 +250,12 @@ public class Mine_MissionActivity extends TabActivity {
 		return true;
 	}
 
+	public void sent(String bs) { // 通过Service发送数据
+		Intent intent = new Intent();// 创建Intent对象
+		intent.setAction("android.intent.action.cmd");
+		intent.putExtra("value", bs);
+		sendBroadcast(intent);// 发送广播
+	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will

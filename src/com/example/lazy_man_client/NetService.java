@@ -1,8 +1,13 @@
 package com.example.lazy_man_client;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -19,9 +24,10 @@ import android.content.IntentFilter;
 
 public class NetService extends Service {
 	CommandReceiver cmdReceiver;// 继承自BroadcastReceiver对象，用于得到Activity发送过来的命令
-	String PC_IP = "101.5.130.103"; // 服务器地址
+//	String PC_IP = "101.5.243.196"; // 服务器地址
+	String PC_IP = "183.173.41.135"; // 服务器地址
 	int port_number = 20000; // 端口号
-	private OutputStream output; // 发送（输出）流
+	private BufferedWriter output; // 发送（输出）流
 	private Socket clientSocket; // 套接字
 	private Handler handler;
 	boolean stop = true;
@@ -60,20 +66,26 @@ public class NetService extends Service {
 				try {
 					clientSocket = new Socket(PC_IP, port_number);
 					if (clientSocket.isConnected()) {
+						DatatoActivity("01","MainActivity");
 						showToast("连接服务器成功！");
 					} else {
 						showToast("连接服务器失败，请稍后再试^-^");
 					}
-					output = clientSocket.getOutputStream();
-					/* 客户端接收服务器数据 */
-					InputStream input = clientSocket.getInputStream();
-					byte[] buf = new byte[1024];
+			        output = new 
+			        		BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
+					/* 客户端接收服务器数据  */
+//					InputStream input = clientSocket.getInputStream();
+			        BufferedReader input = new 
+			        		BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
+//					byte[] buf = new byte[1024];
 					while (true) {
 						try {
-							input.read(buf);
-							// System.out.println("Receive:"+new String(buf));
-							showToast("Receive:" + new String(buf) + "\r\n");
-							DatatoActivity(new String(buf),"MainActivity");
+			    			String buf = "";
+			    			buf = input.readLine();	
+							//			    			System.out.println("Receive:"+new String(buf));
+							showToast("Receive:" + buf + "\r\n");
+							//			    			socket.close();
+							DatatoActivity(buf,"MainActivity");
 							// socket.close();
 						} catch (IOException e) {
 							break;
@@ -88,11 +100,12 @@ public class NetService extends Service {
 		th.start();
 	}
 
-	public void sent(final byte[] hehe) { // 向网络发送数据
+	public void sent(final String hehe) { // 向网络发送数据
 		new Thread() {
 			public void run() {
 				try {
-					output.write(hehe);
+					output.write(hehe+"\n");
+					output.flush();
 				} catch (UnknownHostException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -111,9 +124,10 @@ public class NetService extends Service {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals("android.intent.action.cmd")) {
-				byte[] data = intent.getByteArrayExtra("value");
-				showToast("sent"+new String(data));
-				sent(data);
+				Bundle bundle = intent.getExtras();
+				String str = bundle.getString("value");
+				showToast("sent"+new String(str));
+				sent(str);
 			}
 		}
 	}
