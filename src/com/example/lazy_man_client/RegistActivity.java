@@ -1,3 +1,5 @@
+//注册界面
+
 package com.example.lazy_man_client;
 
 
@@ -9,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,10 +22,11 @@ import android.widget.Toast;
 
 public class RegistActivity extends ActionBarActivity {
 	private Button button_regist;
-	private int stateflag = 0;  // 0:wait   1:OK   -1:fail
+//	private int stateflag = 0;  // 0:wait   1:OK   -1:fail
 	private EditText username, stdnum, mail, phonenum, rname, key, add,
 			depinfo, add2;
 	private MyReceiver receiver;
+	private Handler mHandler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,7 +58,6 @@ public class RegistActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				// 当点击按钮时,会获取编辑框中的数据,然后提交给线程
-				byte[] msgBuffer = null;
 				String str="&00&00"+username.getText().toString()
 						+"&06"+stdnum.getText().toString()
 						+"&03"+mail.getText().toString()
@@ -64,23 +67,59 @@ public class RegistActivity extends ActionBarActivity {
 						+"&04"+add.getText().toString()
 						+"&07"+depinfo.getText().toString()
 						+"&08"+add2.getText().toString();
-				msgBuffer = str.getBytes();
-				sent(msgBuffer);
-//				waiting();
-				stateflag=1;
-				if (1 == stateflag) {
-				Toast.makeText(getApplicationContext(), "注册",
-						Toast.LENGTH_SHORT).show();
-				Intent intent = new Intent(RegistActivity.this,
-						MainActivity.class);
-				startActivity(intent);
-			}}
-		});
+				sent(str);
+				button_regist.setEnabled(false);
 	}
-
-	private void waiting(){
-		stateflag = 0;
-		while(0==stateflag){}		
+	});
+		mHandler = new Handler() {
+			public void handleMessage(android.os.Message msg) {
+				String str = msg.obj.toString();
+				Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
+				.show();	
+				//				String substr = str.substring(0, 2);
+				////				int mm = substr.length();
+				//				if (substr.equals("01")) { // 连接成功
+				//					setAll(true);
+				//				}
+				//				else if (substr.equals("00")) { // 登陆成功
+				//					setAll(true);
+				//					LoginOK();
+				//				}
+				if (str.equals("000")) { // 登陆成功
+					button_regist.setEnabled(true);
+					Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT)
+					.show();
+					Intent intent = new Intent(RegistActivity.this,
+							MainActivity.class);
+					startActivity(intent);
+				}
+				else if (str.equals("001")) { 
+					button_regist.setEnabled(true);
+					Toast.makeText(getApplicationContext(), "指令错误", Toast.LENGTH_SHORT)
+					.show();		
+				}
+				else if (str.equals("002")) { 
+					button_regist.setEnabled(true);
+					Toast.makeText(getApplicationContext(), "连接数据库失败", Toast.LENGTH_SHORT)
+					.show();		
+				}
+				else if (str.equals("003")) { 
+					button_regist.setEnabled(true);
+					Toast.makeText(getApplicationContext(), "获取或更改数据失败", Toast.LENGTH_SHORT)
+					.show();		
+				}
+				else if (str.equals("004")) { 
+					button_regist.setEnabled(true);
+					Toast.makeText(getApplicationContext(), "客户端提供数据不足或不符合规范", Toast.LENGTH_SHORT)
+					.show();		
+				}
+				else if (str.equals("005")) { 
+					button_regist.setEnabled(true);
+					Toast.makeText(getApplicationContext(), "用户名或学工号已被注册", Toast.LENGTH_SHORT)
+					.show();		
+				}
+			};
+		};
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,7 +128,7 @@ public class RegistActivity extends ActionBarActivity {
 		return true;
 	}
 
-	public void sent(byte[] bs) { // 通过Service发送数据
+	public void sent(String bs) { // 通过Service发送数据
 		Intent intent = new Intent();// 创建Intent对象
 		intent.setAction("android.intent.action.cmd");
 		intent.putExtra("value", bs);
