@@ -73,19 +73,11 @@ public class RegistActivity extends ActionBarActivity {
 	});
 		mHandler = new Handler() {
 			public void handleMessage(android.os.Message msg) {
-				String str = msg.obj.toString();
-				Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
-				.show();	
-				//				String substr = str.substring(0, 2);
-				////				int mm = substr.length();
-				//				if (substr.equals("01")) { // 连接成功
-				//					setAll(true);
-				//				}
-				//				else if (substr.equals("00")) { // 登陆成功
-				//					setAll(true);
-				//					LoginOK();
-				//				}
-				if (str.equals("000")) { // 登陆成功
+//				Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
+//				.show();	
+				String strall = msg.obj.toString();
+				String str = strall.substring(0, 4);
+				if (str.equals("&000")) { // 登陆成功
 					button_regist.setEnabled(true);
 					Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT)
 					.show();
@@ -93,27 +85,27 @@ public class RegistActivity extends ActionBarActivity {
 							MainActivity.class);
 					startActivity(intent);
 				}
-				else if (str.equals("001")) { 
+				else if (str.equals("&001")) { 
 					button_regist.setEnabled(true);
 					Toast.makeText(getApplicationContext(), "指令错误", Toast.LENGTH_SHORT)
 					.show();		
 				}
-				else if (str.equals("002")) { 
+				else if (str.equals("&002")) { 
 					button_regist.setEnabled(true);
 					Toast.makeText(getApplicationContext(), "连接数据库失败", Toast.LENGTH_SHORT)
 					.show();		
 				}
-				else if (str.equals("003")) { 
+				else if (str.equals("&003")) { 
 					button_regist.setEnabled(true);
 					Toast.makeText(getApplicationContext(), "获取或更改数据失败", Toast.LENGTH_SHORT)
 					.show();		
 				}
-				else if (str.equals("004")) { 
+				else if (str.equals("&004")) { 
 					button_regist.setEnabled(true);
 					Toast.makeText(getApplicationContext(), "客户端提供数据不足或不符合规范", Toast.LENGTH_SHORT)
 					.show();		
 				}
-				else if (str.equals("005")) { 
+				else if (str.equals("&005")) { 
 					button_regist.setEnabled(true);
 					Toast.makeText(getApplicationContext(), "用户名或学工号已被注册", Toast.LENGTH_SHORT)
 					.show();		

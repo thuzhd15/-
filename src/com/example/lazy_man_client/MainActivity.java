@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
 	private Handler mHandler;
 	// private int stateflag = 0; // 0:wait 1:OK -1:fail
 	MyReceiver receiver;
+	Usr curuser;
 
 	// boolean stop = true;
 	@Override
@@ -34,6 +35,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		init(); // 控件初始化
+		curuser = new Usr();
 		receiver = new MyReceiver(); // 注册广播
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.intent.action.MainActivity"); //此处改成自己activity的名字
@@ -66,43 +68,35 @@ public class MainActivity extends Activity {
 		// 在连接和发送数据之后，接下来就是处理了,发送的数据会通过message的方式传递到消息队列,再由handl进行获取
 		mHandler = new Handler() {
 			public void handleMessage(android.os.Message msg) {
-				String str = msg.obj.toString();
+				String strall = msg.obj.toString();
+				String str = strall.substring(0, 4);
 				Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
 				.show();	
-				//				String substr = str.substring(0, 2);
-				////				int mm = substr.length();
-				//				if (substr.equals("01")) { // 连接成功
-				//					setAll(true);
-				//				}
-				//				else if (substr.equals("00")) { // 登陆成功
-				//					setAll(true);
-				//					LoginOK();
-				//				}
-				if (str.equals("000")) { // 登陆成功
+				if (str.equals("&000")) { // 登陆成功
 					setAll(true);
-					LoginOK();
+					LoginOK(strall);
 				}
-				else if (str.equals("001")) { 
+				else if (str.equals("&001")) { 
 					setAll(true);
 					Toast.makeText(getApplicationContext(), "指令错误", Toast.LENGTH_SHORT)
 					.show();		
 				}
-				else if (str.equals("002")) { 
+				else if (str.equals("&002")) { 
 					setAll(true);
 					Toast.makeText(getApplicationContext(), "连接数据库失败", Toast.LENGTH_SHORT)
 					.show();		
 				}
-				else if (str.equals("003")) { 
+				else if (str.equals("&003")) { 
 					setAll(true);
 					Toast.makeText(getApplicationContext(), "获取或更改数据失败", Toast.LENGTH_SHORT)
 					.show();		
 				}
-				else if (str.equals("004")) { 
+				else if (str.equals("&004")) { 
 					setAll(true);
 					Toast.makeText(getApplicationContext(), "客户端提供数据不足或不符合规范", Toast.LENGTH_SHORT)
 					.show();		
 				}
-				else if (str.equals("004")) { 
+				else if (str.equals("&005")) { 
 					setAll(true);
 					Toast.makeText(getApplicationContext(), "用户名或密码错误", Toast.LENGTH_SHORT)
 					.show();		
@@ -112,9 +106,11 @@ public class MainActivity extends Activity {
 	}
 
 
-	public void LoginOK() {
+	public void LoginOK(String str) {
+		curuser.Initial(str);
 		Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT)
 		.show();
+		Data_all.User_ID = curuser.GetUsrID();
 		Intent intent = new Intent(MainActivity.this,
 				Mine_MissionActivity.class);
 		startActivity(intent);
@@ -125,7 +121,7 @@ public class MainActivity extends Activity {
 		edit_key = (EditText) findViewById(R.id.key);
 		button_login = (Button) findViewById(R.id.button_login);
 		button_regist = (Button) findViewById(R.id.button_regist);
-		setAll(false);
+//		setAll(false);
 		connect();
 	}
 

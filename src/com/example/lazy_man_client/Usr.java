@@ -1,4 +1,4 @@
-package Client; // you need to change the package name according to your own project
+package com.example.lazy_man_client;// you need to change the package name according to your own project
 
 /**
  * Created by Zhouqian on 2018/11/21.
