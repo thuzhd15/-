@@ -25,7 +25,7 @@ import android.content.IntentFilter;
 public class NetService extends Service {
 	CommandReceiver cmdReceiver;// 继承自BroadcastReceiver对象，用于得到Activity发送过来的命令
 //	String PC_IP = "101.5.243.196"; // 服务器地址
-	String PC_IP = "183.173.41.135"; // 服务器地址
+	String PC_IP = "183.173.89.38"; // 服务器地址
 	int port_number = 20000; // 端口号
 	private BufferedWriter output; // 发送（输出）流
 	private Socket clientSocket; // 套接字
@@ -66,8 +66,8 @@ public class NetService extends Service {
 				try {
 					clientSocket = new Socket(PC_IP, port_number);
 					if (clientSocket.isConnected()) {
-						DatatoActivity("01","MainActivity");
-						showToast("连接服务器成功！");
+//						DatatoActivity("000","MainActivity");
+//						showToast("连接服务器成功！");
 					} else {
 						showToast("连接服务器失败，请稍后再试^-^");
 					}

@@ -1,188 +1,36 @@
 package com.example.lazy_man_client;
- // you need to change the package name according to your own project
 
-/**
- * Created by Zhouqian on 2018/11/21.
- * Modified by Zhouqian on 2018/12/10.
- * Modified by ZhongHaodong on 2018/12/12.
-     主要改动：添加了错误类型变量，客户端可以根据这一int变量识别数据库操作是否成功以及错误类型；
-     去掉了学工号属性；
-     添加了地址列表的变量和操作：数据库中用户表只存储地址编号，在注册和更改信息的时候需要同时获取用户信息和所有地址的列表以匹配显示
-     删掉或注释掉了一些暂时不需要的函数，把原来的Init()函数改为Usr类的构造函数
- */
-
-/**
- * Modified by ZhongHaodong on 2018/12/21.
- * 主要改动：去掉了地址列表，地址编号拆分为Area与Address
- *
- */
-
-//用法与Task类似
-
-public class Usr {
-	 // 错误类型，0为成功，1为指令错误，2为连接数据库失败，3为获取或更改数据失败
-	// 4位客户端提供数据不合规范，5为用户名或学工号已被注册或用户名密码错误
-	private int error_type;
+class Data_all {
+	public static String User_ID; //用户ID，全局变量
 	
-    private String UsrID;//用户id项，用于检索
-    private String UsrName;//用户名
-    private String TeleNumber;//电话号码
-    private String Email;//邮箱
-    private String RealName;//姓名
-    private String School;//院系 
-    private int Coins;//金币
-    private int Credit;//信誉
-    private int freez_c; //冻结金币
-    
-    private int[] Address1 = {0,0};//地址1，两位数组
-    private int[] Address2 = {0,0};//地址2
-    private int[] Address3 = {0,0};//地址3
-
-    // 在构造函数中初始化
-    public Usr(){
-    	error_type = 0;
-        UsrID="";
-        UsrName="";
-        RealName="";
-        TeleNumber="";
-        Email="";
-        School="";
-        Coins=100;
-        freez_c=0;
-        Credit=100;
-    }
-    
-    //获取用户信息
-    public int GetErrorType() {return error_type;}
-    public String GetUsrID() {return UsrID;}
-    public String GetUsrName() {return UsrName;}
-    public String GetRealName() {return  RealName;}
-    public int[] GetAddress1() {return Address1;}
-    public int[] GetAddress2() {return Address2;}
-    public int[] GetAddress3() {return Address3;}
-    public String GetTeleNumber() {return TeleNumber;}
-    public String GetEmail() {return Email;}
-    public String GetSchool(){return School;}
-    public int GetCoins() {return Coins;}
-    public int GetFreez() {return freez_c;}
-    public int GetCredit() {return Credit;}
-
-    //开头指令主要用于识别字符串传输的页面，仍需要添加实现方法
-    public void Initial(String example){
-        String[] str = example.split("&");
-        String action = new String();
-        switch(str[1]) {
-            case "00":
-                action = "regist";//根据数据库数据格式
-                str2(example);
-                break;
-            case "01":
-                action = "login";
-                str2(example);
-                break;
-            case "02":
-                action = "modifyinfo";
-                str2(example);
-                break;
-            case "03":
-            	action = "get_info";
-            	str2(example);
-            	break;
-        }
-    }
-
-    //一般拆分
-    public void str2(String example) {
-        String[] str = example.split("&");
-        
-        for (int i = 2; i < str.length; i++) {
-            char strr[] = str[i].toString().toCharArray();
-            char f[]=new char[2];
-            f[0]=strr[0];
-            f[1]=strr[1];
-            String flag=new String(f);
-			switch (flag) {
-			case "00":
-				int error_type = Integer.parseInt(str[i]);
-				this.error_type = error_type;
-				break;
-			case "01":
-				// 用户ID
-				String UsrID = cut(strr);
-				this.UsrID = UsrID;
-				break;
-			case "02":
-				// 用户名
-				String UsrName = cut(strr);
-				this.UsrName = UsrName;
-				break;
-			case "03":
-				// 手机号
-				String Tele = cut(strr);
-				this.TeleNumber = Tele;
-				break;
-			case "04":
-				// 邮箱
-				String email = cut(strr);
-				this.Email = email;
-				break;
-			case "05":
-				// 地址1
-				String add1 = cut(strr);
-				if (add1.length() == 4) {
-					this.Address1[0] = Integer.parseInt(add1.substring(0, 2));
-					this.Address1[1] = Integer.parseInt(add1.substring(2));
-				}
-				break;
-			case "06":
-				// 姓名
-				String name = cut(strr);
-				this.RealName = name;
-				break;
-			case "08":
-				// 院系
-				String school = cut(strr);
-				this.School = school;
-				break;
-			case "09":
-				// 地址2
-				String add2 = cut(strr);
-				if (add2.length() == 4) {
-					this.Address2[0] = Integer.parseInt(add2.substring(0, 2));
-					this.Address2[1] = Integer.parseInt(add2.substring(2));
-				}
-				break;
-			case "10":
-				// 地址3
-				String add3 = cut(strr);
-				if (add3.length() == 4) {
-					this.Address3[0] = Integer.parseInt(add3.substring(0, 2));
-					this.Address3[1] = Integer.parseInt(add3.substring(2));
-				}
-				break;
-			case "11":
-				// 金币
-				String coins = cut(strr);
-				this.Coins = Integer.parseInt(coins);
-				break;
-			case "12":
-				// 信誉度
-				String credit = cut(strr);
-				this.Credit = Integer.parseInt(credit);
-				break;
-			case "13":
-				// 冻结金币
-				String freez_c = cut(strr);
-				this.freez_c = Integer.parseInt(freez_c);
-				break;
-			}
-        }
-    }
-
-    public static String cut(char strr[]){
-        char string[]=new char[strr.length-2];
-        for(int j=0;j<strr.length-2;j++){string[j]=strr[j+2];}
-        String S = new String(string);
-        return S;
-    }
+	// 物件重量/大小
+	public static String[] Size = { "超大", "大", "一般", "小", "很小" }; 
+	
+	// 区域列表与地址列表（每个列表首项都为空，为了在下拉菜单中显示一个空项！）
+	public static String[] Section = { "", "紫荆宿舍区", "南区宿舍区", "三四五六教", "大礼堂附近", "东南门附近" }; //地址分区
+	public static String[][] Address = {
+		{
+			// 为了对应，加了一个空数组
+		},
+		{
+			"","紫荆14号楼后小树林","C楼","紫荆1号楼","紫荆2号楼","紫荆3号楼","紫荆4号楼","紫荆5号楼","紫荆6号楼","紫荆7号楼","紫荆8号楼",
+			"紫荆9号楼","紫荆10号楼","紫荆11号楼","紫荆12号楼","紫荆13号楼","紫荆14号楼","紫荆15号楼","紫荆16号楼","紫荆17号楼","紫荆18号楼",
+			"紫荆19号楼",	"紫荆20号楼","紫荆21号楼","紫荆22号楼","紫荆23号楼"
+		},
+		{
+			"","1号楼","2号楼","3号楼","4号楼","5号楼","6号楼","7号楼","8号楼","9号楼","10号楼","11号楼","12号楼","13号楼","14号楼","15号楼",
+			"16号楼","17号楼","18号楼","19号楼","20号楼","21号楼","22号楼","23号楼","24号楼","25号楼","26号楼","27号楼","28号楼","29号楼",
+			"30号楼","31号楼","32号楼","33号楼","34号楼","35号楼","36号楼","37号楼"
+		},
+		{
+			"","三教一段","三教二段","三教三段","四教","五教","六教A区","六教B区","六教C区","泥沙馆","人文社科图书馆","土木馆","新清华学堂",
+			"文南楼","文北楼"
+		},
+		{
+			"","大礼堂","新水利馆","一教","二教","旧水利馆","清华学堂","老馆","逸夫馆","北馆","西阶梯教室"
+		},
+		{
+			"","中央主楼","东主楼","西主楼","工物馆","经管楼","经管西楼","公管学院","法学院","FIT楼","逸夫技科楼","建筑馆","美术学院"
+		}
+	};
 }

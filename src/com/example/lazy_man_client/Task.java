@@ -1,4 +1,4 @@
-package Client;
+package com.example.lazy_man_client;
 
 /**
 * Created by Zhouqian on 2018/11/21.
@@ -19,36 +19,36 @@ public class Task {
    //      final String example3= "&53&000&010&000&011&000&012";
 
 	// 错误类型：0为成功，1为指令错误，2为连接数据库失败，3为获取或更改数据失败，4位客户端提供数据不合规范
-	private int error_type;
-	private int TNO; // 任务id
-	private int Task_state; // 进行状态
-	private boolean IsMoidfying; // 是否在修改
-	private String Usr1;// 甲方用户名
-	private String Usr2;// 乙方用户名
-	private String Usr1_TelephoneNumber;// 甲方手机号码
-	private String Usr2_TelephoneNumber;// 乙方手机号码
-	private int Size;// 物件大小（的代号）
-	private String Content;// 任务描述
-	private String Tele_Last4num;// 手机号后四位
-	private int Coins;// 悬赏金币
-	private String Evaluate;// 任务评价
+	public int error_type;
+	public int TNO; // 任务id
+	public int Task_state; // 进行状态
+	public boolean IsMoidfying; // 是否在修改
+	public String Usr1;// 甲方用户名
+	public String Usr2;// 乙方用户名
+	public String Usr1_TelephoneNumber;// 甲方手机号码
+	public String Usr2_TelephoneNumber;// 乙方手机号码
+	public int Size;// 物件大小（的代号）
+	public String Content;// 任务描述
+	public String Tele_Last4num;// 手机号后四位
+	public int Coins;// 悬赏金币
+	public String Evaluate;// 任务评价
    // 取快递地址
-   private int[] In_Address = {1,1}; //两位数组
+   public int[] In_Address = {1,1}; //两位数组
    // 取快递时间
-   private int[] In_Time = {1,1,10,18}; //四位数组
+   public int[] In_Time = {1,1,10,18}; //四位数组
    // 交接快递地址
-   private int[] Out_Address = {1,1};
+   public int[] Out_Address = {1,1};
    // 交接快递时间
-   private int[] Out_Time = {1,1,10,22};
+   public int[] Out_Time = {1,1,10,22};
    
-   private class T{
-       private int TNO;
-       private int Size; //物件大小
-       private int[] In_Time = {1,1,10,18}; //取快递时间
-       private int[] Out_Address = {1,1}; //交接快递地点
+   public class T{
+       public int TNO;
+       public int Size; //物件大小
+       public int[] In_Time = {1,1,10,18}; //取快递时间    月 日
+       public int[] Out_Address = {1,1}; //交接快递地点
    };
-   private T Tasklist[];//任务列表
-   private int Tasks_Number;
+   public T Tasklist[];//任务列表
+   public int Tasks_Number;
    
 	public Task() { //构造函数中初始化
 		error_type = 0;
