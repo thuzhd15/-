@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.59" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任务接受者： " />
+
+            <TextView
+                android:id="@+id/User2_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力加载中" />
+
+        </TableRow>
+
+       <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DDL： " />
+
+            <TextView
+                android:id="@+id/REDDL_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力加载中" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任务奖励： " />
+
+            <TextView
+                android:id="@+id/RECoins_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力加载中" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/FinishTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认收货" />
+
+        <Button
+            android:id="@+id/AnnulTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="撤销任务" />
+
+        <Button
+            android:id="@+id/ModifyTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改任务" />
+    </LinearLayout>
+
+</LinearLayout>
