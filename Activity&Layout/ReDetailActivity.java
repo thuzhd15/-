@@ -37,6 +37,8 @@ public class ReDetailActivity extends Activity{
     private Handler mHandler;
 	MyReceiver receiver;
 	Mytask task = new Mytask();
+	
+	private String TaskId;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +52,11 @@ public class ReDetailActivity extends Activity{
 	       
 	       init();
 	       
-	       //Bundle bundle = this.getIntent().getExtras();
-	       //String TaskId = bundle.getString("TaskId");
+	       Bundle bundle = this.getIntent().getExtras();
+	       TaskId = bundle.getString("TaskId");
 	       
 	       //发送查询任务信息
-	       String sendstr = "&01&";
+	       String sendstr = "&56&00"+TaskId;
 	       //sent(sendstr);
 	       mHandler = new Handler() {
 				public void handleMessage(android.os.Message msg) {
@@ -107,11 +109,11 @@ public class ReDetailActivity extends Activity{
 												 */
 												String sendstr;
 												if (i==0){
-													sendstr = "&57&"+"&满意";
+													sendstr = "&57&"+"&00"+TaskId+"&13满意";
 												}else if(i==1){
-													sendstr = "&57&"+"&一般";
+													sendstr = "&57&"+"&00"+TaskId+"&13一般";
 												}else{
-													sendstr = "&57&"+"&呵呵";
+													sendstr = "&57&"+"&00"+TaskId+"&13呵呵";
 												}
 												sent(sendstr);
 											}
@@ -136,7 +138,7 @@ public class ReDetailActivity extends Activity{
 							@Override
 							public void onClick(DialogInterface arg0, int arg1) {
 								// 发送撤销任务信息
-								String sendstr = "&53&";
+								String sendstr = "&53&00" + TaskId;
 								sent(sendstr);
 							}
 								
@@ -156,7 +158,7 @@ public class ReDetailActivity extends Activity{
 							@Override
 							public void onClick(DialogInterface arg0, int arg1) {
 								/*进入任务信息填写页面*/	
-								String sendstr = "&51&";
+								String sendstr = "&51&"+"&00"+TaskId;
 								sent(sendstr);
 							}			
 					})

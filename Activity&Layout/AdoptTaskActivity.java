@@ -46,8 +46,8 @@ public class AdoptTaskActivity extends Activity{
 	       registerReceiver(receiver, filter);
 	       
 	       //发送查询任务列表
-	       //String sendstr = "&01&";
-	       //sent(sendstr);
+	       String sendstr = "&54&41&08"+Usr.UsrID;
+	       sent(sendstr);
 	       
 	       MyTaskList.add("任务列表");
 	       mHandler = new Handler() {

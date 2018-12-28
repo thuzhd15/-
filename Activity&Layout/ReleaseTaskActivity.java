@@ -47,8 +47,8 @@ public class ReleaseTaskActivity extends Activity {
 	       registerReceiver(receiver, filter);
 	       
 	       //发送查询任务列表
-	       String sendstr = "&01&";
-	       //sent(sendstr);
+	       String sendstr = "&54&39&40&07"+Usr.UsrID;
+	       sent(sendstr);
 	       MyTaskList.add("任务列表");
 	       mHandler = new Handler() {
 				public void handleMessage(android.os.Message msg) {

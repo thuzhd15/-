@@ -38,6 +38,8 @@ public class AdDetailActivity extends Activity {
 	MyReceiver receiver;
 	Mytask task = new Mytask();
 	
+	private String TaskId;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	       super.onCreate(savedInstanceState);
@@ -49,11 +51,11 @@ public class AdDetailActivity extends Activity {
 	       
 	       init();
 	       
-	       //Bundle bundle = this.getIntent().getExtras();
-	       //String TaskId = bundle.getString("TaskId");
+	       Bundle bundle = this.getIntent().getExtras();
+	       TaskId = bundle.getString("TaskId");
 	       
 	       //发送查询任务信息
-	       String sendstr = "&01&";
+	       String sendstr = "&54&00" + TaskId;
 	       sent(sendstr);
 	       mHandler = new Handler() {
 				public void handleMessage(android.os.Message msg) {
@@ -86,7 +88,7 @@ public class AdDetailActivity extends Activity {
 							public void onClick(DialogInterface arg0, int arg1) {
 								/*发送确认任务完成字符串*/
 								byte[] msgBuffer = null;
-								String sendstr = "&57&";
+								String sendstr = "&57&00" + TaskId;
 								sent(sendstr);
 								
 							}						
@@ -107,7 +109,7 @@ public class AdDetailActivity extends Activity {
 							public void onClick(DialogInterface arg0, int arg1) {
 								/*发送放弃任务字符串*/
 								byte[] msgBuffer = null;
-								String sendstr = "&55&"+"&0";
+								String sendstr = "&55&"+"00" + TaskId;
 								sent(sendstr);
 							}	
 					})
