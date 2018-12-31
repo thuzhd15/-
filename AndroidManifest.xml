@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mysocketdemo"
+    package="com.example.lazy_man_client"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.INTERNET" >
@@ -73,6 +73,35 @@
             android:name="com.example.lazy_man_client.ReleaseTaskActivity"
             android:label="@string/title_activity_release_task" >
         </activity>
+                <activity
+            android:name=".ChangeActivity"
+            android:label="@string/title_activity_change" >
+        </activity>
+        <activity
+            android:name=".InformationActivity"
+            android:label="@string/title_activity_information" >
+        </activity>
+        <activity
+            android:name=".PasswordActivity"
+            android:label="@string/title_activity_password" >
+        </activity>
+        <activity
+            android:name=".AddressActivity"
+            android:label="@string/title_activity_address" >
+        </activity>
+                <activity
+            android:name=".AReleaseTask"
+            android:label="@string/title_areleasetask" >
+        </activity>
+        <activity
+            android:name=".ATaskModify"
+            android:label="@string/title_ataskmodify" >
+        </activity>
+                <receiver android:name=".NetworkStateReceiver"> 
+            <intent-filter> 
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/> 
+            </intent-filter> 
+        </receiver>
     </application>
 
 </manifest>
