@@ -19,38 +19,38 @@ public class Task {
    //      final String example3= "&53&000&010&000&011&000&012";
 
 	// 错误类型：0为成功，1为指令错误，2为连接数据库失败，3为获取或更改数据失败，4位客户端提供数据不合规范
-	public int error_type;
-	public int TNO; // 任务id
-	public int Task_state; // 进行状态
-	public boolean IsMoidfying; // 是否在修改
-	public String Usr1;// 甲方用户名
-	public String Usr2;// 乙方用户名
-	public String Usr1_TelephoneNumber;// 甲方手机号码
-	public String Usr2_TelephoneNumber;// 乙方手机号码
-	public int Size;// 物件大小（的代号）
-	public String Content;// 任务描述
-	public String Tele_Last4num;// 手机号后四位
-	public int Coins;// 悬赏金币
-	public String Evaluate;// 任务评价
+	private int error_type;
+	private int TNO; // 任务id
+	private int Task_state; // 进行状态
+	private boolean IsMoidfying; // 是否在修改
+	private String Usr1;// 甲方用户名
+	private String Usr2;// 乙方用户名
+	private String Usr1_TelephoneNumber;// 甲方手机号码
+	private String Usr2_TelephoneNumber;// 乙方手机号码
+	private int Size;// 物件大小（的代号）
+	private String Content;// 任务描述
+	private String Tele_Last4num;// 手机号后四位
+	private int Coins;// 悬赏金币
+	private String Evaluate;// 任务评价
    // 取快递地址
-   public int[] In_Address = {1,1}; //两位数组
+   private int[] In_Address = {1,1}; //两位数组
    // 取快递时间
-   public int[] In_Time = {1,1,10,18}; //四位数组
+   private int[] In_Time = {1,1,10,18}; //四位数组
    // 交接快递地址
-   public int[] Out_Address = {1,1};
+   private int[] Out_Address = {1,1};
    // 交接快递时间
-   public int[] Out_Time = {1,1,10,22};
+   private int[] Out_Time = {1,1,10,22};
    
    public class T{
        public int TNO;
        public int Size; //物件大小
-       public int[] In_Time = {1,1,10,18}; //取快递时间    月 日
+       public int[] In_Time = {1,1,10,18}; //取快递时间
        public int[] Out_Address = {1,1}; //交接快递地点
    };
-   public T Tasklist[];//任务列表
-   public int Tasks_Number;
+   private T[] Tasklist;//任务列表
+   private int Tasks_Number;
    
-	public Task() { //构造函数中初始化
+	public Task() { // 构造函数中初始化
 		error_type = 0;
 		TNO = -1; // 任务id
 		Task_state = 0; // 进行状态
@@ -64,6 +64,8 @@ public class Task {
 		Tele_Last4num = "";// 手机号后四位
 		Coins = 0;// 悬赏金币
 		Evaluate = "";// 任务评价
+		Tasklist = null;
+		Tasks_Number = 0;
 	}
 
 	public int GetErrorType() {return error_type;}
@@ -83,46 +85,47 @@ public class Task {
 	public int[] GetInTime(){return In_Time;}
 	public int[] GetOutAddress(){return Out_Address;}
 	public int[] GetOutTime(){return Out_Time;}
+	public T[] GetTasklist() {return Tasklist;}
 
-   //开头指令主要用于识别字符串传输的页面（&53指令还有一些不同），仍需要添加实现方法
+   //开头指令主要用于识别字符串传输的页面（&54指令还有一些不同），仍需要添加实现方法
    public void Initial(String example){
        String[] str = example.split("&");
        String action = new String();
        switch(str[1]) {
-       case "55":
+       case "56":
     	   str2(example);
     	   break;
        case "50":
            action = "releasetask";//根据数据库数据格式
            str2(example);
            break;
-       case "58":
+       case "51":
     	   str2(example);
     	   break;
        case "59":
     	   str2(example);
     	   break;
-       case "51":
+       case "52":
            action = "modifytask";
            str2(example);
            break;
-       case "52":
+       case "53":
            action = "deletask";
            str2(example);
            break;
-       case "53": //此项特殊，需要进入str1方法解析字符串
+       case "54": //此项特殊，需要进入str1方法解析字符串
            action = "searchtask";
            str1(example);
            break;
-       case "54":
+       case "55":
            action = "accepttask";
            str2(example);
            break;
-       case "56":
+       case "57":
            action = "???";
            str2(example);
            break;
-       case "57":
+       case "58":
            action = "???";
            str2(example);
            break;
@@ -273,6 +276,7 @@ public class Task {
 				// 任务ID（是一条任务信息的起始）
 				Task_index ++;
 				String TASKID = cut(strr);
+				this.Tasklist[Task_index] = new T();
 				this.Tasklist[Task_index].TNO = Integer.parseInt(TASKID);
 				break;
 			case "06":

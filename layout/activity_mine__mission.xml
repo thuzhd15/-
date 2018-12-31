@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </TabWidget>
-
+        
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
@@ -27,25 +27,179 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-                <Button
-                    android:id="@+id/myrelease"
+                <TextView
+                    android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我发布的" />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="我的任务"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <Button
-                    android:id="@+id/myaccept"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我接受的" />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp" >
 
-                <Button
-                    android:id="@+id/torelease"
+                    <Button
+                        android:id="@+id/myrelease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我发布的" />
+
+                    <Button
+                        android:id="@+id/myaccept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我接受的" />
+
+                    <Button
+                        android:id="@+id/torelease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发布任务" />
+
+                </LinearLayout>
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+                 <!--                   android:background="@color/Separator"  -->
+
+                <TextView
+                    android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="发布任务" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="账户信息"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:stretchColumns="0" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/text_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户名" />
 
 
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/text_realname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/text_tele"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机号" />
+
+
+        </TableRow>
+
+       <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/text_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="邮箱" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/text_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学院" />
+
+
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/text_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="金币" />
+
+
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/text_credit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="信用" />
+
+
+        </TableRow>
+        
+    </TableLayout> 
+        
+	<Button
+	    android:id="@+id/button_account"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/credit"
+	    android:layout_centerVertical="true"
+	    android:layout_gravity="center_horizontal"
+	    android:text="账户修改" />
 
             </LinearLayout>
 
@@ -66,7 +220,7 @@
                     android:id="@+id/spinner_condition"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                                <Button
+                <Button
                     android:id="@+id/dosearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

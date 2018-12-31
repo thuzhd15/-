@@ -2,9 +2,6 @@
 
 package com.example.lazy_man_client;
 
-
-import com.example.mysocketdemo.R;
-
 import android.support.v7.app.ActionBarActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;

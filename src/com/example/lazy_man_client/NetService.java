@@ -24,8 +24,8 @@ import android.content.IntentFilter;
 
 public class NetService extends Service {
 	CommandReceiver cmdReceiver;// 继承自BroadcastReceiver对象，用于得到Activity发送过来的命令
-//	String PC_IP = "101.5.243.196"; // 服务器地址
-	String PC_IP = "183.173.89.38"; // 服务器地址
+	//	String PC_IP = "101.5.243.196"; // 服务器地址
+	String PC_IP = "101.5.170.45"; // 服务器地址
 	int port_number = 20000; // 端口号
 	private BufferedWriter output; // 发送（输出）流
 	private Socket clientSocket; // 套接字
@@ -66,26 +66,26 @@ public class NetService extends Service {
 				try {
 					clientSocket = new Socket(PC_IP, port_number);
 					if (clientSocket.isConnected()) {
-//						DatatoActivity("000","MainActivity");
-//						showToast("连接服务器成功！");
+						//						DatatoActivity("000","MainActivity");
+						//						showToast("连接服务器成功！");
 					} else {
 						showToast("连接服务器失败，请稍后再试^-^");
 					}
-			        output = new 
-			        		BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
+					output = new 
+							BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
 					/* 客户端接收服务器数据  */
-//					InputStream input = clientSocket.getInputStream();
-			        BufferedReader input = new 
-			        		BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
-//					byte[] buf = new byte[1024];
+					//					InputStream input = clientSocket.getInputStream();
+					BufferedReader input = new 
+							BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
+					//					byte[] buf = new byte[1024];
 					while (true) {
 						try {
-			    			String buf = "";
-			    			buf = input.readLine();	
+							String buf = "";
+							buf = input.readLine();	
 							//			    			System.out.println("Receive:"+new String(buf));
 							showToast("Receive:" + buf + "\r\n");
 							//			    			socket.close();
-							DatatoActivity(buf,"MainActivity");
+							DatatoActivity(buf);
 							// socket.close();
 						} catch (IOException e) {
 							break;
@@ -132,12 +132,53 @@ public class NetService extends Service {
 		}
 	}
 	//向activity传输数据，str是数据，actname是目标activity的名字
-	 public void DatatoActivity(String str,String actname){
-	 Intent intent = new Intent();
-	 intent.putExtra("str", str);
-	 intent.setAction("android.intent.action."+actname);
-	 sendBroadcast(intent);
-	 }
+	public void DatatoActivity(String str){
+		String act = str.substring(0, 3);
+		String actname = "";
+		if(act.equals("&01")) actname = "MainActivity";
+		else if(act.equals("&00")) actname = "RegistActivity";
+		else if(act.equals("&02")) actname = "InformationActivity";
+		//			else if(act.equals("&00")) actname = "RegistActivity";
+		else if(act.equals("&03")) actname = "Mine_MissionActivity";
+		else if(act.equals("&04")) actname = "PasswordActivity";
+		else if(act.equals("&05")) actname = "AddressActivity";	
+		else if(act.equals("&50")) actname = "AReleaseTask";	
+		else if(act.equals("&51")||act.equals("&52")) actname = "ATaskModify";
+		else if(act.equals("&59")) showToast("修改任务成功");
+		else if(act.equals("&53")) actname = "ReDetailActivity";
+		else if(act.equals("&55")) actname = "Mine_MissionActivity";
+		else if(act.equals("&57")) actname = "AdDetailActivity";
+		else if(act.equals("&58")) actname = "ReDetailActivity";
+
+//		if(act.equals("&56"))actname = "AdDetailActivity";
+		
+		Intent intent = new Intent();
+		intent.putExtra("str", str);
+		intent.setAction("android.intent.action."+actname);
+		sendBroadcast(intent);	 
+		if(act.equals("&56")){ 
+			intent.setAction("android.intent.action."+"AdDetailActivity");
+			sendBroadcast(intent);
+//			intent.putExtra("str", str);
+			intent.setAction("android.intent.action."+"Mine_MissionActivity");
+			sendBroadcast(intent);
+			intent.setAction("android.intent.action."+"ReDetailActivity");
+			sendBroadcast(intent);
+			intent.setAction("android.intent.action."+"AdDetailActivity");
+			sendBroadcast(intent);
+			intent.setAction("android.intent.action."+"ATaskModify");
+			sendBroadcast(intent);
+		}
+		if(act.equals("&54")){ 
+//			intent.putExtra("str", str);
+			intent.setAction("android.intent.action."+"Mine_MissionActivity");
+			sendBroadcast(intent);
+			intent.setAction("android.intent.action."+"ReleaseTaskActivity");
+			sendBroadcast(intent);
+			intent.setAction("android.intent.action."+"AdoptTaskActivity");
+			sendBroadcast(intent);
+		}
+	}
 
 	// 在当前页面上显示提示信息
 	public void showToast(final String str) {
