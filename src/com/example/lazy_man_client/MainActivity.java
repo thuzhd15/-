@@ -1,8 +1,6 @@
 //登录界面（初始界面）
 package com.example.lazy_man_client;
 
-import com.example.mysocketdemo.R;
-
 import android.app.Activity;
 //import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -49,8 +47,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				// 当点击按钮时,会获取编辑框中的数据,然后提交给线程
-				String sendstr = "&01&" + edit_username.getText().toString()
-						+ "&" + edit_key.getText();
+				String sendstr = "&01&00" + edit_username.getText().toString()
+						+ "&01" + edit_key.getText();
 				setAll(false);
 				sent(sendstr);
 			}
@@ -69,9 +67,9 @@ public class MainActivity extends Activity {
 		mHandler = new Handler() {
 			public void handleMessage(android.os.Message msg) {
 				String strall = msg.obj.toString();
-				String str = strall.substring(0, 4);
-				Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
-				.show();	
+				String str = strall.substring(3, 7);
+//				Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
+//				.show();	
 				if (str.equals("&000")) { // 登陆成功
 					setAll(true);
 					LoginOK(strall);
@@ -108,8 +106,9 @@ public class MainActivity extends Activity {
 
 	public void LoginOK(String str) {
 		curuser.Initial(str);
-		Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT)
-		.show();
+//		Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT)
+//		.show();
+//		this.onDestroy();
 		Data_all.User_ID = curuser.GetUsrID();
 		Intent intent = new Intent(MainActivity.this,
 				Mine_MissionActivity.class);

@@ -11,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.mysocketdemo.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
@@ -47,6 +46,11 @@ import android.widget.Spinner;
 
 @SuppressWarnings("deprecation")
 public class Mine_MissionActivity extends TabActivity {
+	private String id, username, realname, tele, email, school;
+	private int coin, credit;
+	private Button button_account;
+	private TextView text_username, text_realname, text_tele, text_email, text_school, text_coin, text_credit;
+	
 	private TabHost tabhost;
 	ListView lv_mission; // 可选设备
 	List<String> missions;
@@ -89,7 +93,15 @@ public class Mine_MissionActivity extends TabActivity {
 				startActivity(intent);			
 			}
 		});
+		text_username = (TextView) findViewById(R.id.text_username);
+		text_realname = (TextView) findViewById(R.id.text_realname);
+		text_tele = (TextView) findViewById(R.id.text_tele);
+		text_school = (TextView) findViewById(R.id.text_school);
+		text_email = (TextView) findViewById(R.id.text_email);
+		text_coin = (TextView) findViewById(R.id.text_coin);
+		text_credit = (TextView) findViewById(R.id.text_credit);
 		myaccept = (Button) findViewById(R.id.myaccept);
+		button_account = (Button) findViewById(R.id.button_account);
 		myaccept.setOnClickListener(new View.OnClickListener() {            
 			@Override
 			public void onClick(View v) {
@@ -110,8 +122,15 @@ public class Mine_MissionActivity extends TabActivity {
 				String str = msg.obj.toString();
 				//				Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT)
 				//						.show();
-				curtask.Initial(str);
-				Showmissions(true);
+				String substr = str.substring(0, 3);	
+				if (substr.equals("&03")) { // 初始化
+					init(str);
+					Showmissions(false);
+				}
+				else if(substr.equals("&54")){
+					curtask.Initial(str);
+					Showmissions(true);
+				}			
 			};
 		};
 		// 声明一个ArrayAdapter用于存放简单数据
@@ -141,6 +160,22 @@ public class Mine_MissionActivity extends TabActivity {
 				editcon.setText(sendstr); //test method
 			}
 		});
+		
+		button_account.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				Bundle bundle = new Bundle();
+				bundle.putString("KEY",Data_all.User_ID);
+				Intent intent = new Intent(Mine_MissionActivity.this,ChangeActivity.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
+				finish();
+			}
+		});
+		
+		//***********初始化mine页面
+		String sendstr = "&03&06"+Data_all.User_ID;
+		sent(sendstr);  //请求服务器返回个人信息	
 	}
 
 	private List<String> getData() {
@@ -154,13 +189,32 @@ public class Mine_MissionActivity extends TabActivity {
 		return dataList;
 	}
 
+	public void init(String str){
+		Usr mine = new Usr();
+		mine.Initial(str);
+		username = mine.GetUsrName();
+		realname = mine.GetRealName();
+		tele = mine.GetTeleNumber();
+		email = mine.GetEmail();
+		school = mine.GetSchool();
+		coin = mine.GetCoins();
+		credit = mine.GetCredit();
+		text_username.setText("用户名:"+username);
+		text_realname.setText("姓名:"+realname);
+		text_tele.setText("电话号："+tele);
+		text_school.setText("学院:"+school);
+		text_email.setText("邮箱："+email);
+		text_coin.setText("金币数："+String.valueOf(coin));
+		text_credit.setText("信用值："+String.valueOf(credit));
+				
+	}
 	private void Showmissions(boolean havem) {
 		String size_list[]=getResources().getStringArray(R.array.size);
 		//		String mon_list[]=getResources().getStringArray(R.array.mon);
 		missions = new ArrayList<String>();
 		if(havem){
-			for(int i=0;i<curtask.Tasklist.length;i++){
-				Task.T curTask = curtask.Tasklist[i];
+			for(int i=0;i<curtask.GetTasklist().length;i++){
+				Task.T curTask = curtask.GetTasklist()[i];
 				String des = size_list[curTask.Size]+String.valueOf(curTask.In_Time[1])+"日"+Data_all.Section[curTask.Out_Address[0]];
 				missions.add(des);
 			}
@@ -174,7 +228,7 @@ public class Mine_MissionActivity extends TabActivity {
 			lv_mission.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> arg0, View arg1,
 						int arg2, long arg3) {
-					Showdialog(curtask.Tasklist[arg2]);
+					Showdialog(curtask.GetTasklist()[arg2]);
 
 				}
 			});

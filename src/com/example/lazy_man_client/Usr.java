@@ -13,7 +13,8 @@ package com.example.lazy_man_client;// you need to change the package name accor
 /**
  * Modified by ZhongHaodong on 2018/12/21.
  * 主要改动：去掉了地址列表，地址编号拆分为Area与Address
- *
+ * Modified by ZhongHaodong on 2018/12/22.
+   新增了密码Password的成员变量和解析方法。
  */
 
 //用法与Task类似
@@ -25,6 +26,7 @@ public class Usr {
 	
     private String UsrID;//用户id项，用于检索
     private String UsrName;//用户名
+    private String Password; //密码
     private String TeleNumber;//电话号码
     private String Email;//邮箱
     private String RealName;//姓名
@@ -42,6 +44,7 @@ public class Usr {
     	error_type = 0;
         UsrID="";
         UsrName="";
+        Password = "";
         RealName="";
         TeleNumber="";
         Email="";
@@ -55,6 +58,7 @@ public class Usr {
     public int GetErrorType() {return error_type;}
     public String GetUsrID() {return UsrID;}
     public String GetUsrName() {return UsrName;}
+    public String GetPassword() {return Password;}
     public String GetRealName() {return  RealName;}
     public int[] GetAddress1() {return Address1;}
     public int[] GetAddress2() {return Address2;}
@@ -87,6 +91,15 @@ public class Usr {
             	action = "get_info";
             	str2(example);
             	break;
+            case "04":
+                action = "modifypw";
+                str2(example);
+                break;
+            case "05":
+            	action = "mod_addr";
+            	str2(example);
+            	break;
+
         }
     }
 
@@ -114,6 +127,11 @@ public class Usr {
 				// 用户名
 				String UsrName = cut(strr);
 				this.UsrName = UsrName;
+				break;
+			case "14":
+				// 密码
+				String Password = cut(strr);
+				this.Password = Password;
 				break;
 			case "03":
 				// 手机号
