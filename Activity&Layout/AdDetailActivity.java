@@ -1,7 +1,6 @@
-package com.example.task;
+package com.example.lazy_man_client;
 
 import java.util.ArrayList;
-
 
 
 import android.widget.Button;
@@ -14,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.widget.Button;
 import android.view.View;
@@ -28,69 +28,74 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class AdDetailActivity extends Activity {
     private Button button1;
-    private Button button2;
     
     private TextView User;
     private TextView DDL;
     private TextView Coins;
+    private TextView Address;
+    private TextView Adtime;
+    private TextView infoPhoneOrderer;
+    private TextView infoOrderNum;
+    private TextView taskMessage;
     
-	private Handler mHandler;
+	private Handler mHandler;//信息接收
+	private Handler handler;//toast专用
 	MyReceiver receiver;
-	Mytask task = new Mytask();
+	Task task = new Task();
 	
 	private String TaskId;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	       super.onCreate(savedInstanceState);
-	       setContentView(R.layout.activity_addetail);
+	       setContentView(R.layout.activity_ad_detail);
 	       
 	       receiver = new MyReceiver(); // 注册广播
 	       IntentFilter filter = new IntentFilter();
-	       filter.addAction("android.intent.action.AdoptTaskActivity"); //此处改成自己activity的名字
-	       
+	       filter.addAction("android.intent.action.AdDetailActivity"); //此处改成自己activity的名字
+	       registerReceiver(receiver, filter);
 	       init();
 	       
 	       Bundle bundle = this.getIntent().getExtras();
 	       TaskId = bundle.getString("TaskId");
 	       
 	       //发送查询任务信息
-	       String sendstr = "&54&00" + TaskId;
+	       String sendstr = "&56&00" + TaskId;
 	       sent(sendstr);
 	       mHandler = new Handler() {
 				public void handleMessage(android.os.Message msg) {
-					String str = msg.obj.toString();
-					Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
-					.show();	
-					if (str.equals("000")) { // 登陆成功
-
-					}
-					else if (str.equals("001")) { 
-	
-					}else{
-						task.Initial(str);
-						User.setText(task.GetUsr1Name());
-						DDL.setText(task.GetInTime().toString());
-						Coins.setText(task.GetCoins());
-					}
-					
+					String strall = msg.obj.toString();
+					String str1 = strall.substring(1, 3);
+					String str2 = strall.substring(1, 7);
+					if (str1.equals("56")) { // 接收成功
+						task.Initial(strall);	
+						ShowMessage();	
+					}	
+					if (str2.equals("57&000")) { // 任务完成发送成功
+						showToast("发送成功");
+						//完成按钮不可再点击
+						button1.setEnabled(false);
+					}	
+					if (str2.equals("57&003")||str2.equals("57&004")||str2.equals("57&002")) { // 任务完成发送成功
+						showToast("发送失败");
+						//完成按钮可再点击
+						button1.setEnabled(true);
+					}	
 				};
-			};
-			
-			
+			};	
 	       button1.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					new AlertDialog.Builder(AdDetailActivity.this)
 					.setTitle("温馨提示")
-					.setMessage("是否确定完成任务")
+					.setMessage("是否确定完成任务？ 确认后将无法取消")
 					.setPositiveButton("确定",new DialogInterface.OnClickListener(){
 							@Override
 							public void onClick(DialogInterface arg0, int arg1) {
 								/*发送确认任务完成字符串*/
 								byte[] msgBuffer = null;
 								String sendstr = "&57&00" + TaskId;
-								sent(sendstr);
-								
+								sent(sendstr);	
+								button1.setEnabled(false);
 							}						
 					})
 					.setNegativeButton("取消",null)
@@ -99,38 +104,19 @@ public class AdDetailActivity extends Activity {
 				}
 			});
 	       
-	       button2.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					new AlertDialog.Builder(AdDetailActivity.this)
-					.setTitle("温馨提示")
-					.setMessage("是否确定放弃任务")
-					.setPositiveButton("确定",new DialogInterface.OnClickListener(){
-							@Override
-							public void onClick(DialogInterface arg0, int arg1) {
-								/*发送放弃任务字符串*/
-								byte[] msgBuffer = null;
-								String sendstr = "&55&"+"00" + TaskId;
-								sent(sendstr);
-							}	
-					})
-					.setNegativeButton("取消",null)
-					.create()
-					.show();
-				}
-			});
     }
     public void init(){
 	    button1 = (Button) findViewById(R.id.AchieveTask);//任务完成
-	    button2 = (Button) findViewById(R.id.GiveupTask);//放弃任务
-	    User = (TextView)findViewById(R.id.User1_textView);//甲方用户名
-	    DDL = (TextView)findViewById(R.id.ADDDL_textView);//甲方用户名
-	    Coins = (TextView)findViewById(R.id.ADCoins_textView);//甲方用户名
+	    User = (TextView)findViewById(R.id.infoOrderer);//甲方用户
+	    infoPhoneOrderer = (TextView)findViewById(R.id.infoPhoneOrderer);//甲方电话
+	    DDL = (TextView)findViewById(R.id.infoArriTime);//送达时间
+	    Coins = (TextView)findViewById(R.id.infoCoinsNum);//悬赏金额
+	    Address = (TextView)findViewById(R.id.infoAddress);//送货地址
+	    Adtime = (TextView)findViewById(R.id.infoOrderTime);//下单时间 
+	    infoOrderNum = (TextView)findViewById(R.id.infoOrderNum);//订单号
+	    taskMessage = (TextView)findViewById(R.id.taskMessage);//任务信息
     }
     
-    public void connect() { // 连接服务器，启动Service
-		Intent intent = new Intent(AdDetailActivity.this, NetService.class);
-		startService(intent);
-	}
 
 	//****************两个与netservice沟通的接口，收发数据，，字符串格式	
 	public void sent(String bs) { // 通过Service发送数据
@@ -138,6 +124,23 @@ public class AdDetailActivity extends Activity {
 		intent.setAction("android.intent.action.cmd");
 		intent.putExtra("value", bs);
 		sendBroadcast(intent);// 发送广播
+	}
+	public void ShowMessage(){
+		User.setText(task.GetUsr1Name());
+		DDL.setText(String.valueOf(task.GetOutTime()[0])+"月"+String.valueOf(task.GetOutTime()[1])+"日"+String.valueOf(task.GetOutTime()[2])+"时"+String.valueOf(task.GetOutTime()[3])+"分");
+		Coins.setText(String.valueOf(task.GetCoins()));
+		Address.setText(Data_all.Address[(task.GetOutAddress())[0] ][(task.GetOutAddress())[1] ] );				
+		//更新时间信息
+		Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时"+String.valueOf(task.GetInTime()[3])+"分");
+		infoPhoneOrderer.setText(task.GetUsr1Tele());
+		infoOrderNum.setText(String.valueOf(task.GetTNO()));
+		taskMessage.setText(task.GetContent());
+		if(task.GetTaskstate()==1){
+			button1.setEnabled(true);
+		}
+		if(task.GetTaskstate()==2){
+			button1.setEnabled(false);
+		}
 	}
     private class MyReceiver extends BroadcastReceiver { // 接收service传来的信息
 		@Override
@@ -151,5 +154,15 @@ public class AdDetailActivity extends Activity {
 				mHandler.sendMessage(msg);
 			}
 		}
+	}
+    
+    public void showToast(final String str) {
+		handler = new Handler(Looper.getMainLooper());
+		handler.post(new Runnable() {
+			public void run() {
+				Toast.makeText(getApplicationContext(), str,
+						Toast.LENGTH_LONG).show();
+			}
+		});
 	}
 }

@@ -1,4 +1,4 @@
-package com.example.task;
+package com.example.lazy_man_client;
 
 
 import android.app.Activity;
@@ -33,21 +33,25 @@ public class ReDetailActivity extends Activity{
     private TextView User;
     private TextView DDL;
     private TextView Coins;
-    
+    private TextView Address;
+    private TextView Adtime;
+    private TextView OrderID;
+    private TextView infoPhoneReci;
+    private TextView taskMessage2;
     private Handler mHandler;
 	MyReceiver receiver;
-	Mytask task = new Mytask();
+	Task task = new Task();
 	
 	private String TaskId;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	       super.onCreate(savedInstanceState);
-	       setContentView(R.layout.activity_redetail);
+	       setContentView(R.layout.activity_re_detail);
 	       
 	       receiver = new MyReceiver(); // 注册广播
 	       IntentFilter filter = new IntentFilter();
-	       filter.addAction("android.intent.action.ReleaseTaskActivity"); //此处改成自己activity的名字
+	       filter.addAction("android.intent.action.ReDetailActivity"); //此处改成自己activity的名字
 	       registerReceiver(receiver, filter);
 	       
 	       init();
@@ -57,24 +61,15 @@ public class ReDetailActivity extends Activity{
 	       
 	       //发送查询任务信息
 	       String sendstr = "&56&00"+TaskId;
-	       //sent(sendstr);
+	       sent(sendstr);
 	       mHandler = new Handler() {
-				public void handleMessage(android.os.Message msg) {
-					String str = msg.obj.toString();
-					Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
-					.show();	
-					if (str.equals("000")) { // 登陆成功
-
-					}
-					else if (str.equals("001")) { 
-	
-					}else{
-						task.Initial(str);
-						User.setText(task.GetUsr1Name());
-						DDL.setText(task.GetInTime().toString());
-						Coins.setText(task.GetCoins());
-					}
-					
+				public void handleMessage(android.os.Message msg) {		
+					String strall = msg.obj.toString();
+					String str = strall.substring(1, 3);
+					if (str.equals("56")) { // 接收成功
+						task.Initial(strall);	
+						ShowMessage();	
+					}	
 				};
 			};
 	       
@@ -109,13 +104,14 @@ public class ReDetailActivity extends Activity{
 												 */
 												String sendstr;
 												if (i==0){
-													sendstr = "&57&"+"&00"+TaskId+"&13满意";
+													sendstr = "&58"+"&00"+TaskId+"&13满意";
 												}else if(i==1){
-													sendstr = "&57&"+"&00"+TaskId+"&13一般";
+													sendstr = "&58"+"&00"+TaskId+"&13一般";
 												}else{
-													sendstr = "&57&"+"&00"+TaskId+"&13呵呵";
+													sendstr = "&58"+"&00"+TaskId+"&13呵呵";
 												}
 												sent(sendstr);
+												button1.setEnabled(false);
 											}
 										}
 									}
@@ -172,9 +168,14 @@ public class ReDetailActivity extends Activity{
 		 	button1 = (Button) findViewById(R.id.FinishTask);//确认收货
 	        button2 = (Button) findViewById(R.id.AnnulTask);//撤销任务
 	        button3 = (Button) findViewById(R.id.ModifyTask);//修改任务
-		    User = (TextView)findViewById(R.id.User2_textView);//甲方用户名
-		    DDL = (TextView)findViewById(R.id.REDDL_textView);//甲方用户名
-		    Coins = (TextView)findViewById(R.id.RECoins_textView);//甲方用户名
+		    User = (TextView)findViewById(R.id.infoRecipient);//甲方用户名
+		    DDL = (TextView)findViewById(R.id.infoArriTime);//送达时间
+		    Coins = (TextView)findViewById(R.id.infoCoinsNum);//悬赏金额
+		    Address =(TextView)findViewById(R.id.infoAddress);//收货地址
+		    Adtime = (TextView)findViewById(R.id.infoOrderTime);//收货地址
+		    OrderID = (TextView)findViewById(R.id.infoOrderNum);//订单号
+		    infoPhoneReci = (TextView)findViewById(R.id.infoPhoneReci);
+		    taskMessage2 = (TextView)findViewById(R.id.taskMessage2);
 	    }
 	 public void connect() { // 连接服务器，启动Service
 			Intent intent = new Intent(ReDetailActivity.this, NetService.class);
@@ -188,6 +189,28 @@ public class ReDetailActivity extends Activity{
 			intent.putExtra("value", bs);
 			sendBroadcast(intent);// 发送广播
 		}
+	 
+	 public void ShowMessage(){
+			User.setText(task.GetUsr1Name());
+			DDL.setText(String.valueOf(task.GetOutTime()[0])+"月"+String.valueOf(task.GetOutTime()[1])+"日"+String.valueOf(task.GetOutTime()[2])+"时"+String.valueOf(task.GetOutTime()[3])+"分");
+			Coins.setText(String.valueOf(task.GetCoins()));
+			Address.setText(Data_all.Address[(task.GetOutAddress())[0] ][(task.GetOutAddress())[1] ] );				
+			//更新时间信息
+			Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时"+String.valueOf(task.GetInTime()[3])+"分");
+			OrderID.setText(String.valueOf(task.GetTNO()));
+			infoPhoneReci.setText(task.GetUsr1Tele());
+			taskMessage2.setText(task.GetContent());
+			
+			if(task.GetTaskstate()==0){//任务未被领取，不可确认收货，可撤销
+			    	button1.setEnabled(false);
+			    	button2.setEnabled(true);
+			    }
+			if(task.GetTaskstate()==1||task.GetTaskstate()==2){//任务被领取，可确认收货，不可撤销
+			    	button1.setEnabled(true);
+			    	button2.setEnabled(false);
+			    }
+		}
+	 
 	 private class MyReceiver extends BroadcastReceiver { // 接收service传来的信息
 			@Override
 			public void onReceive(Context context, Intent intent) {
@@ -202,3 +225,4 @@ public class ReDetailActivity extends Activity{
 			}
 		}
 }
+

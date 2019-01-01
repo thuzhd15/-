@@ -1,7 +1,8 @@
-package com.example.task;
+package com.example.lazy_man_client;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -31,8 +32,10 @@ public class ReleaseTaskActivity extends Activity {
 	MyReceiver receiver;
 	
     private ListView list;
-    /*此处向数据库查询我发布的任务，并整合成列表*/
-    Mytask task = new Mytask();
+    List<String> missions;
+    
+    Task task = new Task();
+    
     String[] array;
     ArrayList<String> MyTaskList = new ArrayList<String>();
 
@@ -45,51 +48,21 @@ public class ReleaseTaskActivity extends Activity {
 	       IntentFilter filter = new IntentFilter();
 	       filter.addAction("android.intent.action.ReleaseTaskActivity"); //此处改成自己activity的名字
 	       registerReceiver(receiver, filter);
-	       
-	       //发送查询任务列表
-	       String sendstr = "&54&39&40&07"+Usr.UsrID;
+	       //分别查询被接受的和尚未被接受的任务
+	       String sendstr = "&54&39&07"+Data_all.User_ID;
 	       sent(sendstr);
 	       MyTaskList.add("任务列表");
 	       mHandler = new Handler() {
 				public void handleMessage(android.os.Message msg) {
-					String str = msg.obj.toString();
-					Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
-					.show();	
-					task.Initial(str);
-					
-					for(int i = 0;i<task.Tasklist.length; i++){
-						String time = "";
-						String address="";
-						for(int j = 0 ; j<task.Tasklist[i].In_Time.length;j++){
-							time+=String.valueOf(task.Tasklist[i].In_Time[j]);
-						}
-						for(int j = 0 ; j<task.Tasklist[i].In_Time.length;j++){
-							address+=Data_all.Address[task.Tasklist[i].Out_Address[0]][task.Tasklist[i].Out_Address[1]];
-						}
-						MyTaskList.add(time+" "+address);
-					}
+					String strall = msg.obj.toString();
+					String str = strall.substring(1, 3);
+					if (str.equals("54")) { // 接收成功
+						MyTaskList.clear();
+						task.Initial(strall);
+						Showmissions(true);
+					}		
 				};
 			};
-		   int size = MyTaskList.size();
-		   array = (String[])MyTaskList.toArray(new String[size]);  
-	       list = (ListView)findViewById(R.id.TaskListView);
-	       ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.array_list_view, array);
-	       list.setAdapter(adapter1);
-	       list.setOnItemClickListener(new OnItemClickListener(){
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				// arg2表示点击的是第几个列表
-				Intent intent =new Intent(ReleaseTaskActivity.this,ReDetailActivity.class);
-				//用Bundle携带数据
-			    //Bundle bundle=new Bundle();
-			    //传递name参数为tinyphp
-			    //int TNO = task.Tasklist[arg2].TNO;
-			    //bundle.putString("TaskId", String.valueOf(TNO));
-			    //intent.putExtras(bundle);
-				startActivity(intent);
-			}	    	   
-	       });
 	      
 	    } 
     
@@ -105,6 +78,42 @@ public class ReleaseTaskActivity extends Activity {
 		intent.putExtra("value", bs);
 		sendBroadcast(intent);// 发送广播
 	}
+	
+	private void Showmissions(boolean havem) {
+		String size_list[]=getResources().getStringArray(R.array.size);
+		missions = new ArrayList<String>();
+		if(havem){
+			for(int i=0;i<task.GetTasklist().length;i++){
+				Task.T curTask = task.GetTasklist()[i];
+				String des = size_list[curTask.Size]+String.valueOf(curTask.In_Time[1])+"日"+Data_all.Section[curTask.Out_Address[0]];
+				missions.add(des);
+			}
+		}
+		if (missions.size() > 0) {
+			
+		    list = (ListView)findViewById(R.id.TaskListView);
+		    ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.array_list_view, missions);
+
+			// ListView自身就带有滚动条
+			list.setAdapter(adapter1);
+			list.setOnItemClickListener(new OnItemClickListener() {
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					// arg2表示点击的是第几个列表
+					Intent intent =new Intent(ReleaseTaskActivity.this,ReDetailActivity.class);
+					//用Bundle携带数据
+				    Bundle bundle=new Bundle();
+				    int TNO = (task.GetTasklist())[arg2].TNO;
+				    bundle.putString("TaskId", String.valueOf(TNO));
+				    intent.putExtras(bundle);
+					startActivity(intent);
+
+				}
+			});
+		}
+
+	}
+	
 	private class MyReceiver extends BroadcastReceiver { // 接收service传来的信息
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -131,3 +140,4 @@ public class ReleaseTaskActivity extends Activity {
     }
 
 }
+
