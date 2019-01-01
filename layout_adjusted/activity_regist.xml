@@ -1,212 +1,203 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent" 
+    android:scrollbars="vertical" 
+    android:fadingEdge="vertical">  
+    
+<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.lazy_man_client.RegistActivity" >
+    android:orientation="vertical"
+    android:padding="15dp" >
+    
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="用户名" />
 
     <EditText
         android:id="@+id/edit_Rusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_marginLeft="17dp"
-        android:layout_toRightOf="@+id/textView1"
-        android:ems="10"
         android:inputType="textPersonName" />
+    
+    </LinearLayout>
 
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/edit_Rusername"
-        android:layout_marginTop="14dp"
         android:text="学工号" />
 
     <EditText
         android:id="@+id/edit_Rstdnumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/edit_Rusername"
-        android:ems="10"
         android:inputType="number" />
-
+    </LinearLayout>
+    
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/edit_Rstdnumber"
-        android:layout_marginTop="14dp"
         android:text="邮箱" />
 
     <EditText
         android:id="@+id/edit_Rmailbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignLeft="@+id/edit_Rusername"
-        android:ems="10"
-        android:inputType="textWebEmailAddress" />
-
+        android:ems="10" />
+    
+    </LinearLayout>
+    
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/edit_Rmailbox"
-        android:layout_marginTop="14dp"
         android:text="手机号" />
 
     <EditText
         android:id="@+id/edit_Rphonenumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignLeft="@+id/edit_Rusername"
-        android:ems="10"
-        android:inputType="phone" >
+        android:ems="10" />
+        
+    </LinearLayout>
 
-        <requestFocus />
-    </EditText>
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/edit_Rphonenumber"
-        android:layout_marginTop="14dp"
         android:text="姓名" />
 
     <EditText
         android:id="@+id/edit_Rrealname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView5"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_alignLeft="@+id/edit_Rusername"
         android:ems="10" />
+    
+    </LinearLayout>
 
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/edit_Rrealname"
-        android:layout_marginTop="14dp"
         android:text="密码" />
 
     <EditText
         android:id="@+id/edit_Rkey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView6"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_alignLeft="@+id/edit_Rusername"
         android:ems="10"
         android:inputType="textPassword" />
+    
+    </LinearLayout>
 
+    
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@id/edit_Rkey"
-        android:layout_marginTop="14dp"
-        android:text="确认密码" />
+        android:text="地址" />
 
-    <EditText
-        android:id="@+id/edit_Rkeycomfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView7"
-        android:layout_alignLeft="@+id/edit_Rusername"
-        android:layout_toRightOf="@+id/textView7"
-        android:ems="10"
-        android:inputType="textPassword" />
-
+    <Spinner
+		android:id="@+id/sp_address1_1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+    
+    <Spinner
+		android:id="@+id/sp_address1_2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+    
+    </LinearLayout>
+ 
+    
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_below="@id/edit_Rkeycomfirm"
-        android:layout_marginTop="14dp"
-        android:text="地址" />
+        android:text="院系信息" />
 
-    <EditText
-        android:id="@+id/edit_Raddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView8"
-        android:layout_alignBottom="@+id/textView8"
-        android:layout_alignLeft="@+id/edit_Rusername"
-        android:ems="10" />
+    <Spinner
+		android:id="@+id/sp_school"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+    
+    </LinearLayout>
+    
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView8"
-        android:layout_below="@id/edit_Raddress"
-        android:layout_marginTop="14dp"
-        android:layout_toLeftOf="@+id/edit_Rdepinfo"
-        android:text="院系信息" />
-
-    <EditText
-        android:id="@+id/edit_Rdepinfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView9"
-        android:layout_alignBottom="@+id/textView9"
-        android:layout_alignLeft="@+id/edit_Rusername"
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView9"
-        android:layout_below="@id/edit_Rdepinfo"
-        android:layout_marginTop="14dp"
         android:text="地址2" />
 
-    <EditText
-        android:id="@+id/edit_Raddress2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView10"
-        android:layout_alignBottom="@+id/textView10"
-        android:layout_alignLeft="@+id/edit_Rusername"
-        android:ems="10" />
+     <Spinner
+		android:id="@+id/sp_address2_1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+    
+    <Spinner
+		android:id="@+id/sp_address2_2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+    
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_Rregist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:text="注册" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:text="用户名" />
+</LinearLayout>
 
-</RelativeLayout>
+</ScrollView>
