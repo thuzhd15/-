@@ -344,7 +344,7 @@
             android:id="@+id/AchieveTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="任务完成" />
+            android:text="申请完成" />
     </LinearLayout>
 
 </LinearLayout>

@@ -191,24 +191,36 @@ public class ReDetailActivity extends Activity{
 		}
 	 
 	 public void ShowMessage(){
-			User.setText(task.GetUsr1Name());
-			DDL.setText(String.valueOf(task.GetOutTime()[0])+"月"+String.valueOf(task.GetOutTime()[1])+"日"+String.valueOf(task.GetOutTime()[2])+"时"+String.valueOf(task.GetOutTime()[3])+"分");
+			User.setText(task.GetUsr2Name());
+			DDL.setText(String.valueOf(task.GetOutTime()[0])+"月"+String.valueOf(task.GetOutTime()[1])+"日"+String.valueOf(task.GetOutTime()[2])+"时 - "+String.valueOf(task.GetOutTime()[3])+"时");
 			Coins.setText(String.valueOf(task.GetCoins()));
 			Address.setText(Data_all.Address[(task.GetOutAddress())[0] ][(task.GetOutAddress())[1] ] );				
 			//更新时间信息
-			Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时"+String.valueOf(task.GetInTime()[3])+"分");
+			Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时 - "+String.valueOf(task.GetInTime()[3])+"时");
 			OrderID.setText(String.valueOf(task.GetTNO()));
-			infoPhoneReci.setText(task.GetUsr1Tele());
+			infoPhoneReci.setText(task.GetUsr2Tele());
 			taskMessage2.setText(task.GetContent());
 			
-			if(task.GetTaskstate()==0){//任务未被领取，不可确认收货，可撤销
+			if(task.GetTaskstate()==0){//任务未被领取，不可确认收货，可撤销，可修改
 			    	button1.setEnabled(false);
 			    	button2.setEnabled(true);
+			    	button3.setEnabled(true);
 			    }
 			if(task.GetTaskstate()==1||task.GetTaskstate()==2){//任务被领取，可确认收货，不可撤销
 			    	button1.setEnabled(true);
 			    	button2.setEnabled(false);
+			    	button3.setEnabled(false);
 			    }
+			if(task.GetTaskstate()==3){//任务被完成，不可确认收货，不可撤销
+		    	button1.setEnabled(false);
+		    	button2.setEnabled(false);
+		    	button3.setEnabled(false);
+		    }
+			if(task.GetTaskstate()==4){//任务被撤销，不可确认收货，不可撤销
+		    	button1.setEnabled(false);
+		    	button2.setEnabled(false);
+		    	button3.setEnabled(false);
+		    }
 		}
 	 
 	 private class MyReceiver extends BroadcastReceiver { // 接收service传来的信息

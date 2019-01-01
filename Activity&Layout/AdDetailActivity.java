@@ -127,11 +127,11 @@ public class AdDetailActivity extends Activity {
 	}
 	public void ShowMessage(){
 		User.setText(task.GetUsr1Name());
-		DDL.setText(String.valueOf(task.GetOutTime()[0])+"月"+String.valueOf(task.GetOutTime()[1])+"日"+String.valueOf(task.GetOutTime()[2])+"时"+String.valueOf(task.GetOutTime()[3])+"分");
+		DDL.setText(String.valueOf(task.GetOutTime()[0])+"月"+String.valueOf(task.GetOutTime()[1])+"日"+String.valueOf(task.GetOutTime()[2])+"时 - "+String.valueOf(task.GetOutTime()[3])+"时");
 		Coins.setText(String.valueOf(task.GetCoins()));
 		Address.setText(Data_all.Address[(task.GetOutAddress())[0] ][(task.GetOutAddress())[1] ] );				
 		//更新时间信息
-		Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时"+String.valueOf(task.GetInTime()[3])+"分");
+		Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时 - "+String.valueOf(task.GetInTime()[3])+"时");
 		infoPhoneOrderer.setText(task.GetUsr1Tele());
 		infoOrderNum.setText(String.valueOf(task.GetTNO()));
 		taskMessage.setText(task.GetContent());
@@ -139,6 +139,9 @@ public class AdDetailActivity extends Activity {
 			button1.setEnabled(true);
 		}
 		if(task.GetTaskstate()==2){
+			button1.setEnabled(false);
+		}
+		if(task.GetTaskstate()==3){
 			button1.setEnabled(false);
 		}
 	}

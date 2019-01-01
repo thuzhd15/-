@@ -34,6 +34,10 @@ public class ReleaseTaskActivity extends Activity {
     private ListView list;
     List<String> missions;
     
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    
     Task task = new Task();
     
     String[] array;
@@ -43,6 +47,8 @@ public class ReleaseTaskActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 	       super.onCreate(savedInstanceState);
 	       setContentView(R.layout.activity_task_release);
+	       
+	       init();
 	       
 	       receiver = new MyReceiver(); // 注册广播
 	       IntentFilter filter = new IntentFilter();
@@ -63,6 +69,36 @@ public class ReleaseTaskActivity extends Activity {
 					}		
 				};
 			};
+			button1.setOnClickListener(new OnClickListener() {
+				//点击了未完成的任务
+				public void onClick(View v){
+					String sendstr = "&54&39&07"+Data_all.User_ID;
+				    sent(sendstr);
+				    button1.setEnabled(false);
+				    button2.setEnabled(true);
+				    button3.setEnabled(true);
+				}
+			});
+		   button2.setOnClickListener(new OnClickListener() {
+				//点击了已完成的任务
+				public void onClick(View v){
+					String sendstr = "&54&36&07"+Data_all.User_ID;
+				    sent(sendstr);
+				    button1.setEnabled(true);
+				    button2.setEnabled(false);
+				    button3.setEnabled(true);
+				}
+			});
+		   button3.setOnClickListener(new OnClickListener() {
+				//点击了未完成的任务
+				public void onClick(View v){
+					String sendstr = "&54&37&07"+Data_all.User_ID;
+				    sent(sendstr);
+				    button1.setEnabled(true);
+				    button2.setEnabled(true);
+				    button3.setEnabled(false);
+				}
+			});
 	      
 	    } 
     
@@ -85,13 +121,11 @@ public class ReleaseTaskActivity extends Activity {
 		if(havem){
 			for(int i=0;i<task.GetTasklist().length;i++){
 				Task.T curTask = task.GetTasklist()[i];
-				String des = size_list[curTask.Size]+String.valueOf(curTask.In_Time[1])+"日"+Data_all.Section[curTask.Out_Address[0]];
+				String des = size_list[curTask.Size]+" "+String.valueOf(curTask.In_Time[0])+"月"+curTask.In_Time[1]+"日 "+Data_all.Section[curTask.Out_Address[0]];
 				missions.add(des);
 			}
 		}
-		if (missions.size() > 0) {
-			
-		    list = (ListView)findViewById(R.id.TaskListView);
+		if (missions.size() >= 0) {
 		    ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.array_list_view, missions);
 
 			// ListView自身就带有滚动条
@@ -113,6 +147,19 @@ public class ReleaseTaskActivity extends Activity {
 		}
 
 	}
+	
+	public void init(){
+		list = (ListView)findViewById(R.id.TaskListView);
+		
+	 	button1 = (Button) findViewById(R.id.Unfinished);//未完成的任务
+	 	button1.setEnabled(false);//默认状态，初始不可点击
+	 	
+        button2 = (Button) findViewById(R.id.Finished);//已完成的任务
+        button2.setEnabled(true);//查看历史任务，初始设置为可点击
+        
+        button3 = (Button) findViewById(R.id.Annulled);//已撤销的任务
+        button3.setEnabled(true);//查看历史任务，初始设置为可点击
+    }
 	
 	private class MyReceiver extends BroadcastReceiver { // 接收service传来的信息
 		@Override
