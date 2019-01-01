@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	xmlns:tools="http://schemas.android.com/tools" 
+	android:layout_width="match_parent" 
+    android:layout_height="match_parent" 
+    android:orientation="vertical" > 
+    
+	<Button 
+        android:id="@+id/button_information" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp" 
+        android:text="修改信息" /> 
+        
+	<Button 
+        android:id="@+id/button_password" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/button_information" 
+        android:text="修改密码" /> 
+       
+	<Button 
+        android:id="@+id/button_address" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/button_password" 
+        android:text="修改地址" /> 
+        
+    <Button 
+        android:id="@+id/button_backwards" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/button_address" 
+        android:text="返回" />
+</LinearLayout>
