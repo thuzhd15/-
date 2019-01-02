@@ -42,6 +42,7 @@ public class ReDetailActivity extends Activity{
     private TextView task1_Place;
     private TextView task1_Tele;
     private TextView task1_State;
+    private TextView task1_content;
     
     private Handler mHandler;
 	MyReceiver receiver;
@@ -186,9 +187,10 @@ public class ReDetailActivity extends Activity{
 		    infoPhoneReci = (TextView)findViewById(R.id.infoPhoneReci);
 		    
 		    task1_size = (TextView)findViewById(R.id.task1_size);
-		    task1_Place = (TextView)findViewById(R.id.task1_Place);
+		    task1_Place = (TextView)findViewById(R.id.task1_place);
 		    task1_Tele = (TextView)findViewById(R.id.task1_Tele);
 		    task1_State = (TextView)findViewById(R.id.task1_State);
+		    task1_content = (TextView)findViewById(R.id.task1_content);
 	    }
 	 public void connect() { // 连接服务器，启动Service
 			Intent intent = new Intent(ReDetailActivity.this, NetService.class);
@@ -212,9 +214,11 @@ public class ReDetailActivity extends Activity{
 			Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时 - "+String.valueOf(task.GetInTime()[3])+"时");
 			OrderID.setText(String.valueOf(task.GetTNO()));
 			infoPhoneReci.setText(task.GetUsr2Tele());
-			task1_size.setText(String.valueOf(task.GetSize()));
+			String size_list[]=getResources().getStringArray(R.array.size);
+			task1_size.setText(size_list[task.GetSize()]);
 			task1_Place.setText(Data_all.Address[(task.GetInAddress())[0] ][(task.GetInAddress())[1] ] );	
 			task1_Tele.setText(task.GetLast4Tele());
+			task1_content.setText(task.GetContent());
 			if(task.GetTaskstate()==0){//任务未被领取，不可确认收货，可撤销，可修改
 			    	button1.setEnabled(false);
 			    	button2.setEnabled(true);

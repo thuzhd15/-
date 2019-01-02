@@ -173,7 +173,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
@@ -210,7 +210,7 @@
         android:alignmentMode="alignMargins"
         android:background="@color/Separator"
         android:columnCount="2"
-        android:rowCount="7" >
+        android:rowCount="8" >
 
         <TextView
             android:id="@+id/textView9"
@@ -230,6 +230,7 @@
 
         <TextView
             android:id="@+id/textView10"
+            android:layout_width="120dp"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_marginBottom="1dp"
@@ -242,7 +243,6 @@
             android:paddingTop="5dp"
             android:text="悬赏额"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-
         
         <TextView
             android:id="@+id/textView11"
@@ -276,6 +276,7 @@
 
         <TextView
             android:id="@+id/textView13"
+            android:layout_width="120dp"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_marginBottom="1dp"
@@ -286,7 +287,7 @@
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
-            android:text="下单时间"
+            android:text="取货时间"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
@@ -306,6 +307,7 @@
 
         <TextView
             android:id="@+id/textView15"
+            android:layout_width="120dp"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_marginBottom="1dp"
@@ -333,6 +335,129 @@
             android:paddingTop="5dp"
             android:text="N/A"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="120dp"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_row="4"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="物件大小"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/task1_size"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_row="4"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="N/A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <TextView
+             android:id="@+id/textView17"
+             android:layout_width="120dp"
+             android:layout_column="0"
+             android:layout_columnWeight="1"
+             android:layout_marginBottom="1dp"
+             android:layout_marginLeft="1dp"
+             android:layout_row="5"
+             android:layout_rowWeight="1"
+             android:background="#FFFFFF"
+             android:paddingBottom="5dp"
+             android:paddingLeft="10dp"
+             android:paddingTop="5dp"
+             android:text="取件地址"
+             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/task1_place"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_row="5"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="N/A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="120dp"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_row="6"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="手机尾号"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/task1_Tele"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_row="6"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="N/A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="120dp"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_row="7"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="任务状态"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/task1_State"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_row="7"
+            android:layout_rowWeight="1"
+            android:background="#FFFFFF"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="N/A"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </GridLayout>
 
    	<LinearLayout
@@ -340,88 +465,12 @@
    	    android:layout_height="wrap_content"
    	    android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:orientation="horizontal" >
-            
-            <TextView
-                android:id="@+id/taskMessage1"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:text="物件大小" />
-            
-            <TextView
-                android:id="@+id/task1_size"
-                android:layout_width="188dp"
-                android:layout_height="wrap_content"
-                android:text="努力加载中" />
-            
-        </LinearLayout>
-        
-        <LinearLayout
+        <TextView
+            android:id="@+id/task1_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/taskMessage2"
-                android:layout_width="188dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.98"
-                android:text="取快递地址" />
-
-            <TextView
-                android:id="@+id/task1_Place"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="努力加载中" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/taskMessage3"
-                android:layout_width="188dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.39"
-                android:text="手机尾号" />
-
-            <TextView
-                android:id="@+id/task1_Tele"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="努力加载中" />
-        </LinearLayout>
-        
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:orientation="horizontal" >
-            
-            <TextView
-                android:id="@+id/taskMessage4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.84"
-                android:text="任务状态" />
-            
-            <TextView
-                android:id="@+id/task1_State"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="努力加载中"/>
-            
-        </LinearLayout>
-
-        
+            android:layout_height="50dp"
+            android:text="努力加载中" />
+       
     </LinearLayout>
 
    		<LinearLayout

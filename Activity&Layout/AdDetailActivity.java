@@ -40,6 +40,7 @@ public class AdDetailActivity extends Activity {
     private TextView task_place;
     private TextView task_Tele;
     private TextView task_State;
+    private TextView task_content;
     
 	private Handler mHandler;//信息接收
 	private Handler handler;//toast专用
@@ -123,6 +124,7 @@ public class AdDetailActivity extends Activity {
 	    task_place = (TextView)findViewById(R.id.task_place);//取快递地址
 	    task_Tele = (TextView)findViewById(R.id.task_Tele);//取货电话
 	    task_State = (TextView)findViewById(R.id.task_State);//任务状态
+	    task_content = (TextView)findViewById(R.id.task_content);//任务描述
     }
     
 
@@ -142,9 +144,11 @@ public class AdDetailActivity extends Activity {
 		Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时 - "+String.valueOf(task.GetInTime()[3])+"时");
 		infoPhoneOrderer.setText(task.GetUsr1Tele());
 		infoOrderNum.setText(String.valueOf(task.GetTNO()));
-		task_size.setText(String.valueOf(task.GetSize()));
+		String size_list[]=getResources().getStringArray(R.array.size);
+		task_size.setText(size_list[task.GetSize()]);
 		task_place.setText(Data_all.Address[(task.GetInAddress())[0] ][(task.GetInAddress())[1] ]);
 		task_Tele.setText(task.GetLast4Tele());
+		task_content.setText(task.GetContent());
 		if(task.GetTaskstate()==0){
 			button1.setEnabled(true);
 			task_State.setText("未被领取");
