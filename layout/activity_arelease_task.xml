@@ -1,139 +1,299 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent" 
+    android:scrollbars="vertical" 
+    android:fadingEdge="vertical"
+    android:background="#ededed">  
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="#ffffff">
+    
+    <LinearLayout 
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#000000"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/TaskState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="发布任务"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/space1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ededed"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="15dp" >   
+        
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
+        
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="任务描述"
+                android:id="@+id/TaskRelease_A_2"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_Content"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
+        
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="重量"
+                android:id="@+id/TaskRelease_A_1"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <Spinner
+                android:id="@+id/TaskRelease_A_Size"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context="com.example.zhouqian.myapplication.AReleaseTask">
-<TableRow>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="重量"
-        android:id="@+id/TaskRelease_A_1"/>
+                android:layout_height="wrap_content"
+                android:entries="@array/size" />
+    
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
+            
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="取快递地址"
+                android:id="@+id/TaskRelease_A_6"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_Size"
-        android:entries="@array/size"/>
-</TableRow>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="任务描述"
-        android:id="@+id/TaskRelease_A_2"/>
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_InAddress1"
+                android:entries="@array/address1"/>
+            
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_InAddress2"
+                android:focusableInTouchMode="true"/>
+            
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_Content"/>
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="取快递时间"
+                android:id="@+id/TaskRelease_A_7"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="交接地址"
-        android:id="@+id/TaskRelease_A_3"/>
-<TableRow>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_OutAddress2"
-        android:focusableInTouchMode="true"/>
-</TableRow>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="交接时间"
-        android:id="@+id/TaskRelease_A_4"/>
-<TableRow>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_OutTimeMonth"/>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_OutTimeDay"/>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_OutTimeStartHour"
-        android:entries="@array/hour"/>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_OutTimeEndHour"
-        android:entries="@array/hour"/>
-</TableRow>
-<TableRow>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="悬赏金币"
-        android:id="@+id/TaskRelease_A_5"/>
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_InTimeMonth"/>
+            
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_InTimeDay"/>
+            
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_InTimeStartHour"
+                android:entries="@array/hour"/>
+            
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_InTimeEndHour"
+                android:entries="@array/hour"/>
+                
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_Coins"
-        android:text="0"/>
-</TableRow>
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="手机尾号"
+                android:id="@+id/TaskRelease_A_8"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_Tele4"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            
+        </LinearLayout>
+    
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/space2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="取快递地址"
-        android:id="@+id/TaskRelease_A_6"/>
-<TableRow>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_InAddress1"
-        android:entries="@array/address1"/>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_InAddress2"
-        android:focusableInTouchMode="true"/>
-</TableRow>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="取快递时间"
-        android:id="@+id/TaskRelease_A_7"/>
-<TableRow>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_InTimeMonth"/>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_InTimeDay"/>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_InTimeStartHour"
-        android:entries="@array/hour"/>
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_InTimeEndHour"
-        android:entries="@array/hour"/>
-</TableRow>
-<TableRow>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="手机尾号"
-        android:id="@+id/TaskRelease_A_8"/>
+        android:background="#ededed"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp" />
+                
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="15dp" >   
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_Tele4"/>
-</TableRow>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="提交"
-        android:id="@+id/TaskRelease_A_Btn_Confirm"
-        android:onClick="Getinfo"/>
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="交接地址"
+                android:id="@+id/TaskRelease_A_3"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_Info"/>
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_OutAddress2"
+                android:focusableInTouchMode="true"/>
+            
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
 
-</TableLayout>
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="交接时间"
+                android:id="@+id/TaskRelease_A_4"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_OutTimeMonth"/>
+            
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_OutTimeDay"/>
+            
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_OutTimeStartHour"
+                android:entries="@array/hour"/>
+            
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_OutTimeEndHour"
+                android:entries="@array/hour"/>
+            
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="悬赏金币"
+                android:id="@+id/TaskRelease_A_5"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/TaskRelease_A_Coins"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            
+        </LinearLayout>
+    
+    </LinearLayout>
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#ededed"
+        android:orientation="vertical" > 
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交"
+            android:id="@+id/TaskRelease_A_Btn_Confirm"
+            android:onClick="Getinfo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TaskRelease_Info"/>
+            
+    </LinearLayout>
+
+</LinearLayout>
+
+</ScrollView>
