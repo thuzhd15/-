@@ -1,331 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView 
-    xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent" 
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="#ffffff"
-    android:scrollbars="vertical" 
-    android:fadingEdge="vertical">  
-    
-<LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-    
-    <LinearLayout 
-        android:id="@+id/title"
+    android:fadingEdge="vertical"
+    android:scrollbars="vertical" >
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#000000"
         android:orientation="vertical" >
-    
-        <TextView
-            android:id="@+id/textView0"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#000000"
             android:gravity="center"
-            android:padding="10dp"
-            android:text="注册"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    
-    </LinearLayout> 
-    
-    <LinearLayout 
-        android:id="@+id/space1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#ededed"
-        android:padding="5dp"
-        android:orientation="vertical" /> 
-    
-    <LinearLayout 
-        android:id="@+id/generalInformation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="15dp" >
-    
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame" >"
-    
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" 
-                android:text="用户名" />
+            android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/edit_Rusername"
+            <TextView
+                android:id="@+id/textView0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-    
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="注册"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout 
+        <LinearLayout
+            android:id="@+id/space1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-    
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="密码" />
+            android:background="#ededed"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp" />
 
-            <EditText
-                android:id="@+id/edit_Rkey"
+        <LinearLayout
+            android:id="@+id/generalInformation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="用户名" />
+
+                <EditText
+                    android:id="@+id/edit_Rusername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"                
+                android:background="@drawable/frame" >
+
+			<TextView
+			    android:id="@+id/textView6"
+			    android:layout_width="80dp"
+			    android:layout_height="wrap_content"
+			    android:text="密码" />
+
+                <EditText
+                    android:id="@+id/edit_Rkey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textViewhehe"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="确认密码" />
+
+                <EditText
+                    android:id="@+id/edit_Rkeycomfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/space2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ededed"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp" />
+
+        <LinearLayout
+            android:id="@+id/realIdentity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="姓名" />
+
+                <EditText
+                    android:id="@+id/edit_Rrealname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="学工号" />
+
+                <EditText
+                    android:id="@+id/edit_Rstdnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="邮箱" />
+
+                <EditText
+                    android:id="@+id/edit_Rmailbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="手机号" />
+
+                <EditText
+                    android:id="@+id/edit_Rphonenumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="院系信息" />
+
+                <EditText
+                    android:id="@+id/edit_Rdepinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/space3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ededed"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp" />
+
+        <LinearLayout
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="地址" />
+
+                <Spinner
+                    android:id="@+id/sp_address1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/sp_address1_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="地址2" />
+
+                <Spinner
+                    android:id="@+id/sp_address2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/sp_address2_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/frame" >
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="地址3" />
+
+                <Spinner
+                    android:id="@+id/sp_address3_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/sp_address3_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ededed"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/button_Rregist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword" />
-    
+                android:text="注册" />
         </LinearLayout>
-        
     </LinearLayout>
-    
-    
-    <LinearLayout 
-        android:id="@+id/space2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#ededed"
-        android:padding="5dp"
-        android:orientation="vertical" />
-    
-    <LinearLayout 
-        android:id="@+id/realIdentity"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="15dp" >
-    
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-    
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="姓名" />
 
-            <EditText
-                android:id="@+id/edit_Rrealname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10" />
-    
-        </LinearLayout>    
-        
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-            
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="学工号" />
-
-            <EditText
-                android:id="@+id/edit_Rstdnumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-        
-        </LinearLayout>
-    
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-    
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="邮箱" />
-
-            <EditText
-                android:id="@+id/edit_Rmailbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10" />
-    
-        </LinearLayout>
-    
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-    
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="手机号" />
-
-            <EditText
-                android:id="@+id/edit_Rphonenumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10" />
-        
-        </LinearLayout>
-
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-    
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="院系信息" />
-
-            <Spinner
-	        	android:id="@+id/sp_school"
-	        	android:layout_width="wrap_content"
-	        	android:layout_height="wrap_content" />
-    
-        </LinearLayout>
-        
-    </LinearLayout>
-    
-    <LinearLayout 
-        android:id="@+id/space3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#ededed"
-        android:padding="5dp"
-        android:orientation="vertical" />
-    
-    <LinearLayout 
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="15dp" >
-    
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-    
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="地址" />
-
-            <Spinner
-	        	android:id="@+id/sp_address1_1"
-	        	android:layout_width="wrap_content"
-	        	android:layout_height="wrap_content" />
-    
-            <Spinner
-	        	android:id="@+id/sp_address1_2"
-	        	android:layout_width="wrap_content"
-	        	android:layout_height="wrap_content" />
-    
-        </LinearLayout>
- 
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="地址2" />
-
-            <Spinner
-		        android:id="@+id/sp_address2_1"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" />
-    
-            <Spinner
-	        	android:id="@+id/sp_address2_2"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" />
-    
-        </LinearLayout>
-        
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="地址3" />
-
-            <Spinner
-		        android:id="@+id/sp_address3_1"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" />
-    
-            <Spinner
-	        	android:id="@+id/sp_address3_2"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" />
-    
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout 
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#ededed"
-        android:gravity="center">
-    
-        <Button
-            android:id="@+id/button_Rregist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注册" />
-    
-    </LinearLayout>
-
-</LinearLayout>
-    
 </ScrollView>

@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </TabWidget>
-        
+
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
@@ -61,13 +61,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="发布任务" />
-
                 </LinearLayout>
-                
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1px"/>
-                 <!--                   android:background="@color/Separator"  -->
+                    android:layout_height="1px" />
+                <!-- android:background="@color/Separator" -->
 
                 <TextView
                     android:id="@+id/textView8"
@@ -78,148 +77,288 @@
                     android:text="账户信息"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:stretchColumns="0" >
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:stretchColumns="0" >
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" >
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp" >
 
-            <TextView
-                android:id="@+id/text_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="用户名" />
+                        <TextView
+                            android:id="@+id/text_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="用户名" />
+                    </TableRow>
 
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp" >
 
-        </TableRow>
+                        <TextView
+                            android:id="@+id/text_realname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="姓名" />
+                    </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" >
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp" >
 
-            <TextView
-                android:id="@+id/text_realname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="姓名" />
+                        <TextView
+                            android:id="@+id/text_tele"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="手机号" />
+                    </TableRow>
 
+                    <TableRow
+                        android:id="@+id/tableRow4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp" >
 
-        </TableRow>
+                        <TextView
+                            android:id="@+id/text_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="邮箱" />
+                    </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" >
+                    <TableRow
+                        android:id="@+id/tableRow5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp" >
 
-            <TextView
-                android:id="@+id/text_tele"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="手机号" />
+                        <TextView
+                            android:id="@+id/text_school"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="学院" />
+                    </TableRow>
 
+                    <TableRow
+                        android:id="@+id/tableRow6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp" >
 
-        </TableRow>
+                        <TextView
+                            android:id="@+id/text_coin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="金币" />
+                    </TableRow>
 
-       <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" >
+                    <TableRow
+                        android:id="@+id/tableRow7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp" >
 
-            <TextView
-                android:id="@+id/text_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="邮箱" />
+                        <TextView
+                            android:id="@+id/text_credit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="信用" />
+                    </TableRow>
+                </TableLayout>
 
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" >
-
-            <TextView
-                android:id="@+id/text_school"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="学院" />
-
-
-        </TableRow>
-        
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" >
-
-            <TextView
-                android:id="@+id/text_coin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="金币" />
-
-
-        </TableRow>
-        
-        <TableRow
-            android:id="@+id/tableRow7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" >
-
-            <TextView
-                android:id="@+id/text_credit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="信用" />
-
-
-        </TableRow>
-        
-    </TableLayout> 
-        
-	<Button
-	    android:id="@+id/button_account"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/credit"
-	    android:layout_centerVertical="true"
-	    android:layout_gravity="center_horizontal"
-	    android:text="账户修改" />
-
+                <Button
+                    android:id="@+id/button_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/credit"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:text="账户修改" />
             </LinearLayout>
+
+            <!-- 另一个tabhost -->
 
             <LinearLayout
                 android:id="@+id/widget_layout_yellow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical" >                <EditText
-                    android:id="@+id/edit_condition"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10" >
-
-                    <requestFocus />
-                </EditText>
+                android:orientation="vertical" >
 
                 <Spinner
                     android:id="@+id/spinner_condition"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <!-- 按时间搜索 -->
+
+                <CheckBox
+                    android:id="@+id/checkBoxTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="取快递时间：" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <Spinner
+                        android:id="@+id/spinner_TaskMonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/Edit_TaskDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="01" />
+
+                    <TextView
+                        android:id="@+id/TaskDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="日，自"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <EditText
+                        android:id="@+id/Edit_TaskStartTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00" />
+
+                    <TextView
+                        android:id="@+id/TaskStartTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="时至"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <EditText
+                        android:id="@+id/Edit_TaskEndTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00" />
+
+                    <TextView
+                        android:id="@+id/TaskEndTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="时"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+                <!-- 按地址搜索 -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <CheckBox
+                        android:id="@+id/checkBoxAdress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="取快递地址：" />
+
+                    <Spinner
+                        android:id="@+id/mm_section"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Spinner
+                        android:id="@+id/mm_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                                <!-- 按时间搜索 -->
+
+                <CheckBox
+                    android:id="@+id/checkBoxTime2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="交接时间：" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <Spinner
+                        android:id="@+id/spinner_TaskMonth2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/Edit_TaskDay2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="01" />
+
+                    <TextView
+                        android:id="@+id/TaskDay2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="日，自"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <EditText
+                        android:id="@+id/Edit_TaskStartTime2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00" />
+
+                    <TextView
+                        android:id="@+id/TaskStartTime2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="时至"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <EditText
+                        android:id="@+id/Edit_TaskEndTime2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00" />
+
+                    <TextView
+                        android:id="@+id/TaskEndTime2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="时"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+                <!-- 按地址搜索 -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <CheckBox
+                        android:id="@+id/checkBoxAdress2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="交接地址：" />
+
+                    <Spinner
+                        android:id="@+id/mm_section2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Spinner
+                        android:id="@+id/mm_address2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
                 <Button
                     android:id="@+id/dosearch"
                     android:layout_width="wrap_content"

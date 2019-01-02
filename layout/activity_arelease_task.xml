@@ -38,10 +38,6 @@
 <TableRow>
     <Spinner
         android:layout_height="wrap_content"
-        android:id="@+id/TaskRelease_A_OutAddress1"
-        android:entries="@array/address1"/>
-    <Spinner
-        android:layout_height="wrap_content"
         android:id="@+id/TaskRelease_A_OutAddress2"
         android:focusableInTouchMode="true"/>
 </TableRow>
