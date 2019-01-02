@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent" 
+    android:background="#ffffff"
+    android:scrollbars="vertical" 
+    android:fadingEdge="vertical">  
+
+<LinearLayout 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="15dp" >
 
@@ -277,7 +285,7 @@
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
-            android:text="下单时间"
+            android:text="取快递时间"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
@@ -332,19 +340,117 @@
         android:layout_weight="1"
         android:gravity="bottom"
         android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/taskMessage"
+        
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.84"
-            android:text="任务信息" />
+            android:gravity="bottom"
+            android:orientation="horizontal" >
 
+            <TextView
+                android:id="@+id/taskMessage1"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.58"
+                android:text="物件大小" />
+
+            <TextView
+                android:id="@+id/task_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力加载中" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/taskMessage2"
+                android:layout_width="196dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:text="取快递地址" />
+
+            <TextView
+                android:id="@+id/task_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力加载中" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/taskMessage3"
+                android:layout_width="212dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.43"
+                android:text="手机尾号" />
+
+            <TextView
+                android:id="@+id/task_Tele"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力加载中" />
+        </LinearLayout>
+        
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+            
+            <TextView
+                android:id="@+id/taskMessage4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.84"
+                android:text="任务状态" />
+            
+            <TextView
+                android:id="@+id/task_State"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力加载中"/>
+            
+        </LinearLayout>
+        
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+            
+            <TextView
+                android:id="@+id/taskMessage5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.84"
+                android:text="任务描述" />
+            
+            <TextView
+                android:id="@+id/task_Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="努力加载中"/>
+            
+        </LinearLayout>
+           
         <Button
             android:id="@+id/AchieveTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="任务完成" />
+            android:text="申请完成" />
+        
     </LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>

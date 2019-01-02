@@ -125,6 +125,7 @@ public class Mine_MissionActivity extends TabActivity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.intent.action.Mine_MissionActivity");
 		registerReceiver(receiver, filter);
+		
 		mHandler = new Handler() {
 			public void handleMessage(android.os.Message msg) {
 				String str = msg.obj.toString();
@@ -138,9 +139,10 @@ public class Mine_MissionActivity extends TabActivity {
 				else if(substr.equals("&54")){
 					curtask.Initial(str);
 					Showmissions(true);
-				}			
+				}
 			};
 		};
+		
 		// 声明一个ArrayAdapter用于存放简单数据
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 				Mine_MissionActivity.this,
@@ -186,7 +188,7 @@ public class Mine_MissionActivity extends TabActivity {
 		
 		//***********初始化mine页面
 		String sendstr = "&03&06"+Data_all.User_ID;
-		sent(sendstr);  //请求服务器返回个人信息	
+		sent(sendstr);  //请求服务器返回个人信息
 	}
 
 	private List<String> getData() {
@@ -219,6 +221,7 @@ public class Mine_MissionActivity extends TabActivity {
 		text_credit.setText("信用值："+String.valueOf(credit));
 				
 	}
+	
 	private void Showmissions(boolean havem) {
 		String size_list[]=getResources().getStringArray(R.array.size);
 		//		String mon_list[]=getResources().getStringArray(R.array.mon);
@@ -267,7 +270,7 @@ public class Mine_MissionActivity extends TabActivity {
 		}
 	}
 
-	private void Showdialog(final Task.T curTask) {                                           // 显示信息的对话框
+	private void Showdialog(final Task.T curTask) {   // 显示信息的对话框
 		String mon_list[]=getResources().getStringArray(R.array.mon);
 		LayoutInflater factory=LayoutInflater.from(Mine_MissionActivity.this);
 		final View v1=factory.inflate(R.layout.dialogview,null);
@@ -303,8 +306,6 @@ public class Mine_MissionActivity extends TabActivity {
 		});
 		dialog.show();
 	}
-
-
 
 	public void showToast(String str) {// 显示提示信息
 		Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();

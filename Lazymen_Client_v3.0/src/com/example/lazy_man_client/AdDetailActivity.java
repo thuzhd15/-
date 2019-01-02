@@ -36,7 +36,11 @@ public class AdDetailActivity extends Activity {
     private TextView Adtime;
     private TextView infoPhoneOrderer;
     private TextView infoOrderNum;
-    private TextView taskMessage;
+    private TextView task_size;
+    private TextView task_place;
+    private TextView task_Tele;
+    private TextView task_State;
+    private TextView task_Content;
     
 	private Handler mHandler;//信息接收
 	private Handler handler;//toast专用
@@ -54,6 +58,7 @@ public class AdDetailActivity extends Activity {
 	       IntentFilter filter = new IntentFilter();
 	       filter.addAction("android.intent.action.AdDetailActivity"); //此处改成自己activity的名字
 	       registerReceiver(receiver, filter);
+	       
 	       init();
 	       
 	       Bundle bundle = this.getIntent().getExtras();
@@ -105,6 +110,7 @@ public class AdDetailActivity extends Activity {
 			});
 	       
     }
+    
     public void init(){
 	    button1 = (Button) findViewById(R.id.AchieveTask);//任务完成
 	    User = (TextView)findViewById(R.id.infoOrderer);//甲方用户
@@ -114,9 +120,13 @@ public class AdDetailActivity extends Activity {
 	    Address = (TextView)findViewById(R.id.infoAddress);//送货地址
 	    Adtime = (TextView)findViewById(R.id.infoOrderTime);//下单时间 
 	    infoOrderNum = (TextView)findViewById(R.id.infoOrderNum);//订单号
-	    taskMessage = (TextView)findViewById(R.id.taskMessage);//任务信息
+	    
+	    task_size = (TextView)findViewById(R.id.task_size);//物件大小
+	    task_place = (TextView)findViewById(R.id.task_place);//取快递地址
+	    task_Tele = (TextView)findViewById(R.id.task_Tele);//取货电话
+	    task_State = (TextView)findViewById(R.id.task_State);//任务状态
+	    task_Content = (TextView)findViewById(R.id.task_Content);//任务描述
     }
-    
 
 	//****************两个与netservice沟通的接口，收发数据，，字符串格式	
 	public void sent(String bs) { // 通过Service发送数据
@@ -125,23 +135,43 @@ public class AdDetailActivity extends Activity {
 		intent.putExtra("value", bs);
 		sendBroadcast(intent);// 发送广播
 	}
+	
 	public void ShowMessage(){
 		User.setText(task.GetUsr1Name());
-		DDL.setText(String.valueOf(task.GetOutTime()[0])+"月"+String.valueOf(task.GetOutTime()[1])+"日"+String.valueOf(task.GetOutTime()[2])+"时"+String.valueOf(task.GetOutTime()[3])+"分");
+		DDL.setText(String.valueOf(task.GetOutTime()[0])+"月"+String.valueOf(task.GetOutTime()[1])+"日"+String.valueOf(task.GetOutTime()[2])+"时 - "+String.valueOf(task.GetOutTime()[3])+"时");
 		Coins.setText(String.valueOf(task.GetCoins()));
 		Address.setText(Data_all.Address[(task.GetOutAddress())[0] ][(task.GetOutAddress())[1] ] );				
 		//更新时间信息
-		Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时"+String.valueOf(task.GetInTime()[3])+"分");
+		Adtime.setText(String.valueOf(task.GetInTime()[0])+"月"+String.valueOf(task.GetInTime()[1])+"日"+String.valueOf(task.GetInTime()[2])+"时 - "+String.valueOf(task.GetInTime()[3])+"时");
 		infoPhoneOrderer.setText(task.GetUsr1Tele());
 		infoOrderNum.setText(String.valueOf(task.GetTNO()));
-		taskMessage.setText(task.GetContent());
+		task_size.setText(String.valueOf(task.GetSize()));
+		task_place.setText(Data_all.Address[(task.GetInAddress())[0] ][(task.GetInAddress())[1] ]);
+		task_Tele.setText(task.GetLast4Tele());
+		task_Content.setText(task.GetContent());
+		
+		if(task.GetTaskstate()==0){
+			button1.setEnabled(true);
+			task_State.setText("未被领取");
+		}
 		if(task.GetTaskstate()==1){
 			button1.setEnabled(true);
+			task_State.setText("进行中");
 		}
 		if(task.GetTaskstate()==2){
 			button1.setEnabled(false);
+			task_State.setText("已申请完成");
+		}
+		if(task.GetTaskstate()==3){
+			button1.setEnabled(false);
+			task_State.setText("已完成");
+		}
+		if(task.GetTaskstate()==4){
+			button1.setEnabled(false);
+			task_State.setText("已撤销");
 		}
 	}
+	
     private class MyReceiver extends BroadcastReceiver { // 接收service传来的信息
 		@Override
 		public void onReceive(Context context, Intent intent) {

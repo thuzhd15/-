@@ -24,16 +24,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class AReleaseTask extends Activity {
-    Task TASK = new Task();
+    Task TASK;
     Usr USR = new Usr();
     String Usrinfo;
     private Socket socket;
-    public static final String TASK_ID = "com.example.zhouqian.myapplication.MESSAGE";
-    final Handler handler = new MyHandler();
     MyReceiver receiver;
     private Handler mHandler;
     NetworkStateReceiver networkstatereceiver;
@@ -41,6 +40,7 @@ public class AReleaseTask extends Activity {
     private Spinner add_spinner_In1;
     private Spinner add_spinner_Out1;
     private Spinner add_spinner_In2;
+    private boolean[] out = {true,true,true};
     private Spinner add_spinner_Out2;
     private Spinner timeout_month;
     private Spinner timeout_day;
@@ -52,6 +52,7 @@ public class AReleaseTask extends Activity {
     private Spinner timein_endhour;
     private String[] size_list;
     private String[] out_add_list1;
+    private List<String> olists = new ArrayList<String>();
     private String[] out_add_list2;
     private String[] in_add_list1;
     private String[] in_add_list2;
@@ -92,104 +93,50 @@ public class AReleaseTask extends Activity {
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.intent.action.AReleaseTask");
         registerReceiver(receiver, filter);
-/*
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    socket = new Socket("183.172.219.30", 10086);
-                    // 接收
-                    InputStream inputStream = socket.getInputStream();
-                    byte[] buffer = new byte[102400];
-                    int len;
-                    while ((len = inputStream.read(buffer)) != -1) {
-                        String s = new String(buffer, 0, len);
-                        //
-                        Message message = Message.obtain();
-                        message.what = 0;
-                        message.obj = s;
-                        handler.sendMessage(message);
-                    }
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-*/
+        
         Usrinfo = "用户名：zhoug15 金币：100 信用值：100";//这个需要从上级页面获得，麻烦国旺或者天石根据自己的页面改一下
 
-        Init();//初始化页面
-
-        if (networkstatereceiver == null) {
-            networkstatereceiver = new NetworkStateReceiver();
-        }
-        IntentFilter filter1 = new IntentFilter();
-        filter1.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(networkstatereceiver, filter1);
-        System.out.println("注册");
-        
-        /*mHandler = new Handler() {
+        mHandler = new Handler() {
             public void handleMessage(android.os.Message msg) {
                 String str = msg.obj.toString();
-                Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
-                        .show();
-                //				String substr = str.substring(0, 2);
-                ////				int mm = substr.length();
-                //				if (substr.equals("01")) { // 连接成功
-                //					setAll(true);
-                //				}
-                //				else if (substr.equals("00")) { // 登陆成功
-                //					setAll(true);
-                //					LoginOK();
-                //				}
-                if (str.equals("000")) { // 登陆成功
-                    //       button_regist.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT)
-                            .show();
-                    Intent intent = new Intent(AReleaseTask.this,
-                            MainActivity.class);
-                    startActivity(intent);
+                //				Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT)
+                //						.show();
+                String substr = str.substring(0, 3);
+                if (substr.equals("&03")) { // 初始化
+                    USR.Initial(str);
+                    System.out.println(str);
+
+                    int[][] add = {{0,0},{0,0},{0,0}};
+                    add[0] = USR.GetAddress1();
+                    add[1] = USR.GetAddress2();
+                    add[2] = USR.GetAddress3();
+                    for(int i=0;i<3;i++){
+                        if(add[i][0]==0){out[i]=false;}
+                        else{olists.add(Data_all.Section[add[i][0]]+Data_all.Address[add[i][0]][add[i][1]]);}
+                    }
+
+                    add_spinner_Out2 = (Spinner) findViewById(R.id.TaskRelease_A_OutAddress2);
+                    //out_add_list2 = getResources().getStringArray(R.array.address21);
+                    addout_arr_adapter2 = new ArrayAdapter<String>(AReleaseTask.this,android.R.layout.simple_spinner_item,olists);
+                    addout_arr_adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    add_spinner_Out2.setAdapter(addout_arr_adapter2);
+                    add_spinner_Out2.setOnItemSelectedListener(new OutAdd2Listener());
                 }
-                else if (str.equals("001")) {
-                    //     button_regist.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "指令错误", Toast.LENGTH_SHORT)
-                            .show();
-                }
-                else if (str.equals("002")) {
-                    //    button_regist.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "连接数据库失败", Toast.LENGTH_SHORT)
-                            .show();
-                }
-                else if (str.equals("003")) {
-                    //    button_regist.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "获取或更改数据失败", Toast.LENGTH_SHORT)
-                            .show();
-                }
-                else if (str.equals("004")) {
-                    //    button_regist.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "客户端提供数据不足或不符合规范", Toast.LENGTH_SHORT)
-                            .show();
-                }
-                else if (str.equals("005")) {
-                    //    button_regist.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "用户名或学工号已被注册", Toast.LENGTH_SHORT)
-                            .show();
+                else if(substr.equals("&50")){
+
+                	Toast.makeText(getApplicationContext(), "发布任务成功！", Toast.LENGTH_LONG)
+					.show();
                 }
             };
-        };*/
+        };
 
+        String GetUsrInfo = "&03&06" + Data_all.User_ID;
+        sent(GetUsrInfo);
+
+        Init(); // 初始化页面
     }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_arelease_task, menu);
-        return true;
-    }*/
-
-    @Override
+    
+    /*    @Override
     protected void onResume() {
         if (networkstatereceiver == null) {
             networkstatereceiver = new NetworkStateReceiver();
@@ -199,16 +146,17 @@ public class AReleaseTask extends Activity {
         registerReceiver(networkstatereceiver, filter);
         System.out.println("注册");
         super.onResume();
-    }
+    }*/
 
     //onPause()方法注销
     @Override
     protected void onPause() {
-        unregisterReceiver(networkstatereceiver);
+//        unregisterReceiver(networkstatereceiver);
         unregisterReceiver(receiver);
         System.out.println("注销");
         super.onPause();
     }
+
     public void Init(){//初始化界面所有控件
         TextView info = (TextView)findViewById(R.id.TaskRelease_Info);
         info.setText(Usrinfo);
@@ -220,13 +168,14 @@ public class AReleaseTask extends Activity {
         size_arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         size_spinner.setAdapter(size_arr_adapter);
         size_spinner.setOnItemSelectedListener(new sizeListener());
-
+/*
         add_spinner_Out1 = (Spinner) findViewById(R.id.TaskRelease_A_OutAddress1);
         out_add_list1 = getResources().getStringArray(R.array.address1);
         addout_arr_adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,out_add_list1);
         addout_arr_adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         add_spinner_Out1.setAdapter(addout_arr_adapter1);
         add_spinner_Out1.setOnItemSelectedListener(new OutAdd1Listener());
+*/
 
         add_spinner_In1 = (Spinner) findViewById(R.id.TaskRelease_A_InAddress1);
         in_add_list1 = getResources().getStringArray(R.array.address1);
@@ -235,12 +184,6 @@ public class AReleaseTask extends Activity {
         add_spinner_In1.setAdapter(addin_arr_adapter1);
         add_spinner_In1.setOnItemSelectedListener(new InAdd1Listener());
 
-        add_spinner_Out2 = (Spinner) findViewById(R.id.TaskRelease_A_OutAddress2);
-        out_add_list2 = getResources().getStringArray(R.array.address21);
-        addout_arr_adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,out_add_list2);
-        addout_arr_adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        add_spinner_Out2.setAdapter(addout_arr_adapter2);
-        add_spinner_Out2.setOnItemSelectedListener(new OutAdd2Listener());
 
         add_spinner_In2 = (Spinner) findViewById(R.id.TaskRelease_A_InAddress2);
         in_add_list2 = getResources().getStringArray(R.array.address21);
@@ -320,38 +263,54 @@ public class AReleaseTask extends Activity {
     public void Getinfo(View view){ //发送发布任务请求
         boolean IsLegal = true;//检查输入合法性
         Content = content.getText().toString();
-        if(Content.indexOf('&')!=-1){IsLegal = false;System.out.print("0");}//输入不能有&
+		if (Content.length() == 0) {
+			IsLegal = false;
+			showToast("任务描述不能为空！");
+		} // 任务描述不能为空
+		if (Content.indexOf('&') != -1) {
+			IsLegal = false;
+			showToast("输入中不能含有&！");
+		} // 输入不能有&
 
-        Coins = coins.getText().toString();
-        if(Coins.length() == 0){IsLegal = false;System.out.print("1");}//金币不能为空
-        if(isNumeric(Coins) == false){IsLegal = false;System.out.print("2");}//金币必须使用数字
+		Coins = coins.getText().toString();
+		if (Coins.length() == 0) {
+			IsLegal = false;
+			showToast("悬赏金币值不能为空！");
+		}// 金币不能为空
+		if (isNumeric(Coins) == false) {
+			IsLegal = false;
+			showToast("金币值必须使用数字！");
+		}// 金币必须使用数字
 
-        Tele4 = tele4.getText().toString();
-        if((Tele4.length() != 4)&&(Tele4.length()!=0)){IsLegal = false;System.out.print(Tele4.length());}//手机号码必须为四位或者不填
-        if(isNumeric(Tele4) == false){IsLegal = false;System.out.print("4");}//手机必须使用数字
+		Tele4 = tele4.getText().toString();
+		if ((Tele4.length() != 4) && (Tele4.length() != 0)) {
+			IsLegal = false;
+			showToast("手机尾号必须为4位数字或者为空！");
+		} else if (isNumeric(Tele4) == false) {
+			IsLegal = false;
+			showToast("手机尾号必须为4位数字或者为空！");
+			;
+		}
 
         if(!IsLegal){System.out.println("输入不合法");}
-  //      byte[]  msgBuffer = null;
         final String Str2sql = "&50"+"&01"+Coins//金币
                 +"&04"+Content//任务描述
-                +"&07"+"周乾"//甲方用户
+                +"&07"+Data_all.User_ID//甲方用户
                 +"&09"+Integer.toString(Size)//物件大小/重量
                 +"&02"+String.format("%02d",In_Address[0])+String.format("%02d", In_Address[1])//取快递地址
                 +"&03"+String.format("%02d",InTime[0])+String.format("%02d",InTime[1])+String.format("%02d",InTime[2])+String.format("%02d",InTime[3])//取快递时间
                 +"&10"+String.format("%02d",Out_Address[0])+String.format("%02d", Out_Address[1])//交接快递地址
                 +"&11"+String.format("%02d",OutTime[0])+String.format("%02d",OutTime[1])+String.format("%02d",OutTime[2])+String.format("%02d",OutTime[3])//交接快递时间
                 +"&12"+Tele4;//手机尾号
-   //     msgBuffer = Str2sql.getBytes();
- //       sent(msgBuffer);
-//        st=Str2sql;
 
-        //发送前需要检查网络情况！！！！！！！！！！！！
-        if((networkstatereceiver.Isdata==true||networkstatereceiver.Iswifi==true)&&IsLegal){
-            System.out.println(Str2sql);
-            //ToSolvingtask();
-            //sent(Str2sql);
-            //sendmessage(Str2sql);
+        if(IsLegal) {
+        	sent(Str2sql); //发送字符串
         }
+        
+/*        if((networkstatereceiver.Isdata==true||networkstatereceiver.Iswifi==true)&&IsLegal){
+            System.out.println(Str2sql);           
+            //sendmessage(Str2sql);
+        }*/
     }
 
     private void sendmessage(final String data){//这个东西之后用国旺的
@@ -385,41 +344,24 @@ public class AReleaseTask extends Activity {
                 + (ip >> 16 & 0xff) + "." + (ip >> 24 & 0xff));
     }
 
-    private class MyHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if (msg.what == 0) {
-                String s = (String) msg.obj;
-                Toast.makeText(AReleaseTask.this, s, Toast.LENGTH_SHORT).show();
-
-            }
-        }
-    }
-
     private class MyReceiver extends BroadcastReceiver { // 接收service传来的信息
         @Override
         public void onReceive(Context context, Intent intent) {
             // TODO Auto-generated method stub
-            if (intent.getAction().equals("android.intent.action.AReleaseTask")) {
+            if (intent.getAction().equals(
+                    "android.intent.action.AReleaseTask")) {
                 Bundle bundle = intent.getExtras();
-/*				if (OK) {
-					stateflag = 1   ;
-				} else if (cmd == CMD_RECEIVE_DATA) {
-					String str = bundle.getString("str");
-					Message msg = new Message();
-					msg.obj = str;
-					mHandler.sendMessage(msg);
-				}
-				*/
+                // if (cmd == CMD_SHOW_TOAST) {
+                // String str = bundle.getString("str");
+                // showToast(str);
+                // } else if (cmd == CMD_RECEIVE_DATA) {
+                String str = bundle.getString("str");
+                Message msg = new Message();
+                msg.obj = str;
+                mHandler.sendMessage(msg);
+                // }
             }
         }
-    }
-
-
-    public void connect() {   //连接服务器，启动Service
-        Intent intent = new Intent(AReleaseTask.this,NetService.class);
-        startService(intent);
     }
 
     public void sent(String bs){  //通过Service发送数据
@@ -429,6 +371,10 @@ public class AReleaseTask extends Activity {
         sendBroadcast(intent);//发送广播
     }
 
+    public void showToast(String str) {// 显示提示信息
+		Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+	}
+    
     //这后面是13个下拉菜单的接收器
     class sizeListener implements AdapterView.OnItemSelectedListener {
 
@@ -438,7 +384,6 @@ public class AReleaseTask extends Activity {
             String selected = parent.getItemAtPosition(position).toString();
             Size = position;
             System.out.println(selected);
-            if (Size==2){ToSolvingtask();}
         }
 
         @Override
@@ -489,7 +434,26 @@ public class AReleaseTask extends Activity {
         public void onItemSelected(AdapterView<?> parent, View view,
                                    int position, long id) {
             String selected = parent.getItemAtPosition(position).toString();
-            Out_Address[1] = position+1;
+            int pos=0;
+			for (int i = 0; i <= position; i++, pos++) {
+				if (out[pos] == false) {
+					pos++;
+				}
+			}
+
+            switch(pos){
+                case 1:
+                    Out_Address = USR.GetAddress1();
+                    break;
+                case 2:
+                    Out_Address = USR.GetAddress2();
+                    break;
+                case 3:
+                    Out_Address = USR.GetAddress3();
+                    break;
+            }
+
+            //Out_Address[1] = position+1;
             System.out.println(selected);
         }
 
@@ -705,12 +669,4 @@ public class AReleaseTask extends Activity {
             System.out.println("nothingSelect");
         }
     };
-    
-    public void ToSolvingtask() {
-        // Do something in response to button
-        Intent intent = new Intent(this, ATaskModify.class);
-        String message="&51&000&010001&061&07取快递&10&1120&080101&0901010101&150101&1601010101";
-        intent.putExtra(TASK_ID, message);
-        startActivity(intent);
-    }
 }

@@ -9,8 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +18,9 @@ import android.widget.Toast;
 
 public class RegistActivity extends ActionBarActivity {
 	private Button button_regist;
-//	private int stateflag = 0;  // 0:wait   1:OK   -1:fail
-	private EditText username, stdnum, mail, phonenum, rname, key, add,
-			depinfo, add2;
+	//	private int stateflag = 0;  // 0:wait   1:OK   -1:fail
+	private EditText username, stdnum, mail, phonenum, rname, key, key_R, add,
+	depinfo, add2;
 	private MyReceiver receiver;
 	private Handler mHandler;
 	@Override
@@ -34,6 +33,7 @@ public class RegistActivity extends ActionBarActivity {
 		phonenum = (EditText) findViewById(R.id.edit_Rphonenumber);
 		rname = (EditText) findViewById(R.id.edit_Rrealname);
 		key = (EditText) findViewById(R.id.edit_Rkey);
+		key_R = (EditText) findViewById(R.id.edit_Rkeycomfirm);
 		add = (EditText) findViewById(R.id.edit_Raddress);
 		depinfo = (EditText) findViewById(R.id.edit_Rdepinfo);
 		add2 = (EditText) findViewById(R.id.edit_Raddress2);
@@ -42,6 +42,20 @@ public class RegistActivity extends ActionBarActivity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.intent.action.RegistActivity");
 		registerReceiver(receiver, filter);
+		
+		
+// 测试用例		
+		username.setText("呵呵呵");
+		stdnum.setText("2015010783");
+		mail.setText("zguidbaiu@ndviubfiu.com");
+		phonenum.setText("15236945783");
+		rname.setText("张国旺");
+		key.setText("123456789");
+		key_R.setText("123456789");
+		add.setText("0106");
+		depinfo.setText("qichexi");
+		add2.setText("0105");
+				
 		/*
 		 * 注册,若成功则返回登录页面 发送注册信息
 		 * 示例：注册用户名“李四”，学工号2015000123，邮箱sss@tsinghua.educn，手机号00001111222，姓名 李思思，密码20482048，地址 紫荆8#110B ，院系信息 呵呵系，地址2 紫荆8#120B 
@@ -49,62 +63,69 @@ public class RegistActivity extends ActionBarActivity {
 		 * 
 		 * 需要服务器反馈：用户是否已经存在，即是否成功注册
 		 */
-
 		button_regist.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+								
 				// TODO Auto-generated method stub
 				// 当点击按钮时,会获取编辑框中的数据,然后提交给线程
-				String str="&00&00"+username.getText().toString()
-						+"&06"+stdnum.getText().toString()
-						+"&03"+mail.getText().toString()
-						+"&02"+phonenum.getText().toString()
-						+"&05"+rname.getText().toString()
-						+"&01"+key.getText().toString()
-						+"&04"+add.getText().toString()
-						+"&07"+depinfo.getText().toString()
-						+"&08"+add2.getText().toString();
-				sent(str);
-				button_regist.setEnabled(false);
-	}
-	});
+				if(key_R.getText().toString().equals(key.getText().toString())){
+					String str="&00&00"+username.getText().toString()
+							+"&06"+stdnum.getText().toString()
+							+"&03"+mail.getText().toString()
+							+"&02"+phonenum.getText().toString()
+							+"&05"+rname.getText().toString()
+							+"&01"+key.getText().toString()
+							+"&04"+add.getText().toString()
+							+"&07"+depinfo.getText().toString()
+							+"&08"+add2.getText().toString();
+					sent(str);
+					button_regist.setEnabled(false);
+				}
+				else{
+					Toast.makeText(getApplicationContext(), "两次输入密码不一致，请再次确认^-^", Toast.LENGTH_SHORT)
+					.show();
+				}
+			}
+		});
 		mHandler = new Handler() {
 			public void handleMessage(android.os.Message msg) {
-//				Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
-//				.show();	
+				//				Toast.makeText(getApplicationContext(), "handle"+str, Toast.LENGTH_SHORT)
+				//				.show();	
 				String strall = msg.obj.toString();
-				String str = strall.substring(0, 4);
-				if (str.equals("&000")) { // 登陆成功
+				String str = strall.substring(3, 7);
+				if (str.equals("&000")) { // 成功
 					button_regist.setEnabled(true);
 					Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT)
 					.show();
 					Intent intent = new Intent(RegistActivity.this,
 							MainActivity.class);
 					startActivity(intent);
+					finish();
 				}
 				else if (str.equals("&001")) { 
 					button_regist.setEnabled(true);
-					Toast.makeText(getApplicationContext(), "指令错误", Toast.LENGTH_SHORT)
+					Toast.makeText(getApplicationContext(), "指令错误！", Toast.LENGTH_SHORT)
 					.show();		
 				}
 				else if (str.equals("&002")) { 
 					button_regist.setEnabled(true);
-					Toast.makeText(getApplicationContext(), "连接数据库失败", Toast.LENGTH_SHORT)
+					Toast.makeText(getApplicationContext(), "连接数据库失败！", Toast.LENGTH_SHORT)
 					.show();		
 				}
 				else if (str.equals("&003")) { 
 					button_regist.setEnabled(true);
-					Toast.makeText(getApplicationContext(), "获取或更改数据失败", Toast.LENGTH_SHORT)
+					Toast.makeText(getApplicationContext(), "获取数据失败！", Toast.LENGTH_SHORT)
 					.show();		
 				}
 				else if (str.equals("&004")) { 
 					button_regist.setEnabled(true);
-					Toast.makeText(getApplicationContext(), "客户端提供数据不足或不符合规范", Toast.LENGTH_SHORT)
+					Toast.makeText(getApplicationContext(), "信息不规范！", Toast.LENGTH_SHORT)
 					.show();		
 				}
 				else if (str.equals("&005")) { 
 					button_regist.setEnabled(true);
-					Toast.makeText(getApplicationContext(), "用户名或学工号已被注册", Toast.LENGTH_SHORT)
+					Toast.makeText(getApplicationContext(), "用户名或学工号已被注册！", Toast.LENGTH_SHORT)
 					.show();		
 				}
 			};
@@ -117,22 +138,17 @@ public class RegistActivity extends ActionBarActivity {
 		intent.putExtra("value", bs);
 		sendBroadcast(intent);// 发送广播
 	}
-	
+
 	private class MyReceiver extends BroadcastReceiver { // 接收service传来的信息
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
 			if (intent.getAction().equals("android.intent.action.RegistActivity")) {
 				Bundle bundle = intent.getExtras();
-/*				if (OK) {
-					stateflag = 1   ;
-				} else if (cmd == CMD_RECEIVE_DATA) {
-					String str = bundle.getString("str");
-					Message msg = new Message();
-					msg.obj = str;
-					mHandler.sendMessage(msg);
-				}
-				*/
+				String str = bundle.getString("str");
+				Message msg = new Message();
+				msg.obj = str;
+				mHandler.sendMessage(msg);
 			}
 		}
 	}
