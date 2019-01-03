@@ -64,13 +64,13 @@
                 android:layout_height="wrap_content"
                 android:text="任务描述"
                 android:id="@+id/TaskRelease_A_2"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/TaskRelease_A_Content"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp" />
             
         </LinearLayout>
         
@@ -86,12 +86,13 @@
                 android:layout_height="wrap_content"
                 android:text="重量"
                 android:id="@+id/TaskRelease_A_1"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp" />
 
             <Spinner
                 android:id="@+id/TaskRelease_A_Size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:entries="@array/size" />
     
         </LinearLayout>
@@ -108,18 +109,20 @@
                 android:layout_height="wrap_content"
                 android:text="取快递地址"
                 android:id="@+id/TaskRelease_A_6"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp" />
 
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_InAddress1"
+                android:textSize="12sp"
                 android:entries="@array/address1"/>
             
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_InAddress2"
+                android:textSize="12sp"
                 android:focusableInTouchMode="true"/>
             
         </LinearLayout>
@@ -136,27 +139,31 @@
                 android:layout_height="wrap_content"
                 android:text="取快递时间"
                 android:id="@+id/TaskRelease_A_7"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp"/>
 
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/TaskRelease_A_InTimeMonth"/>
             
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/TaskRelease_A_InTimeDay"/>
             
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/TaskRelease_A_InTimeStartHour"
                 android:entries="@array/hour"/>
             
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/TaskRelease_A_InTimeEndHour"
                 android:entries="@array/hour"/>
                 
@@ -174,13 +181,13 @@
                 android:layout_height="wrap_content"
                 android:text="手机尾号"
                 android:id="@+id/TaskRelease_A_8"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/TaskRelease_A_Tele4"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp" />
             
         </LinearLayout>
     
@@ -213,12 +220,13 @@
                 android:layout_height="wrap_content"
                 android:text="交接地址"
                 android:id="@+id/TaskRelease_A_3"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp" />
 
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_OutAddress2"
+                android:textSize="12sp"
                 android:focusableInTouchMode="true"/>
             
         </LinearLayout>
@@ -235,27 +243,31 @@
                 android:layout_height="wrap_content"
                 android:text="交接时间"
                 android:id="@+id/TaskRelease_A_4"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp" />
 
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/TaskRelease_A_OutTimeMonth"/>
             
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/TaskRelease_A_OutTimeDay"/>
             
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/TaskRelease_A_OutTimeStartHour"
                 android:entries="@array/hour"/>
             
             <Spinner
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/TaskRelease_A_OutTimeEndHour"
                 android:entries="@array/hour"/>
             
@@ -273,14 +285,20 @@
                 android:layout_height="wrap_content"
                 android:text="悬赏金币"
                 android:id="@+id/TaskRelease_A_5"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/TaskRelease_A_Coins"
                 android:text="0"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="12sp"/>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:id="@+id/TaskRelease_Info"/>
             
         </LinearLayout>
     
@@ -288,13 +306,13 @@
         
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
         android:background="#ededed"
         android:orientation="vertical" > 
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="提交"
             android:id="@+id/TaskRelease_A_Btn_Confirm"
