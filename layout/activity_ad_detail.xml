@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView 
+<LinearLayout 
     xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent" 
-    android:scrollbars="vertical" 
-    android:fadingEdge="vertical"
-    android:background="#ededed">  
-
-<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" 
-    android:background="#ffffff">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     
     <LinearLayout 
-        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -33,6 +24,19 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
         
     </LinearLayout>
+
+<ScrollView 
+    android:layout_width="match_parent" 
+    android:layout_height="match_parent" 
+    android:scrollbars="vertical" 
+    android:fadingEdge="vertical"
+    android:background="#ededed">  
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="#ffffff">
 
     <LinearLayout 
         android:layout_width="match_parent"
@@ -53,7 +57,7 @@
 
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="15dp" >
         
@@ -393,3 +397,5 @@
 </LinearLayout>
 
 </ScrollView>
+
+</LinearLayout>
