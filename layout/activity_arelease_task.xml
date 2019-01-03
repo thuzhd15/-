@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView 
     xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.zhouqian.myapplication.AReleaseTask"
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent" 
     android:scrollbars="vertical" 
@@ -110,11 +112,13 @@
 
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_InAddress1"
                 android:entries="@array/address1"/>
             
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_InAddress2"
                 android:focusableInTouchMode="true"/>
             
@@ -136,19 +140,23 @@
 
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_InTimeMonth"/>
             
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_InTimeDay"/>
             
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_InTimeStartHour"
                 android:entries="@array/hour"/>
             
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_InTimeEndHour"
                 android:entries="@array/hour"/>
                 
@@ -209,6 +217,7 @@
 
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_OutAddress2"
                 android:focusableInTouchMode="true"/>
             
@@ -230,19 +239,23 @@
 
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_OutTimeMonth"/>
             
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_OutTimeDay"/>
             
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_OutTimeStartHour"
                 android:entries="@array/hour"/>
             
             <Spinner
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:id="@+id/TaskRelease_A_OutTimeEndHour"
                 android:entries="@array/hour"/>
             
@@ -286,11 +299,6 @@
             android:text="提交"
             android:id="@+id/TaskRelease_A_Btn_Confirm"
             android:onClick="Getinfo"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/TaskRelease_Info"/>
             
     </LinearLayout>
 
