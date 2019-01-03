@@ -372,7 +372,7 @@
             <TextView
                 android:id="@+id/task1_content"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:text="努力加载中" />
        
         </LinearLayout>

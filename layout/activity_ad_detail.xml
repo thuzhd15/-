@@ -372,7 +372,7 @@
             <TextView
                 android:id="@+id/task_content"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
+                android:layout_height="wrap_content"
                 android:text="TextView" />
 
         </LinearLayout>
