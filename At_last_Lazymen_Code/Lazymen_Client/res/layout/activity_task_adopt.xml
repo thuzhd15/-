@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#000000"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="我领取的"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    </LinearLayout>
+    
+    <ListView
+        android:id="@+id/TaskListView2"
+        android:layout_width="match_parent"
+        android:layout_height="322dp" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/Unfinished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未完成的任务" />
+
+        <Button
+            android:id="@+id/Finished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已完成的任务" />
+
+    </LinearLayout>
+
+</LinearLayout>
