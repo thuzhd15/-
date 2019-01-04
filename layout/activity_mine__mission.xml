@@ -25,6 +25,7 @@
                 android:id="@+id/widget_layout_red"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#ededed"
                 android:orientation="vertical" >
 
                 <TextView
@@ -38,8 +39,9 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp" >
@@ -54,7 +56,7 @@
                         android:id="@+id/myaccept"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="我接受的" />
+                        android:text="我领取的" />
 
                     <Button
                         android:id="@+id/torelease"
@@ -176,14 +178,31 @@
                     </TableRow>
                 </TableLayout>
 
-                <Button
-                    android:id="@+id/button_account"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/credit"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_horizontal"
-                    android:text="账户修改" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/button_information"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="修改信息" />
+
+                    <Button
+                        android:id="@+id/button_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="修改密码" />
+
+                    <Button
+                        android:id="@+id/button_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="修改地址" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <!-- 另一个tabhost -->
@@ -204,11 +223,13 @@
                     android:id="@+id/checkBoxTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     android:text="取快递时间：" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
                     <Spinner
@@ -220,32 +241,35 @@
                         android:id="@+id/Edit_TaskDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:text="01" />
 
                     <TextView
                         android:id="@+id/TaskDay"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="日，自"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textSize="12sp"
+                        android:text="日，自" />
 
                     <EditText
                         android:id="@+id/Edit_TaskStartTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:text="00" />
 
                     <TextView
                         android:id="@+id/TaskStartTime"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="时至"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textSize="12sp"
+                        android:text="时至" />
 
                     <EditText
                         android:id="@+id/Edit_TaskEndTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:text="00" />
 
                     <TextView
@@ -253,7 +277,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="时"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textSize="12sp" />
+                    
                 </LinearLayout>
                 <!-- 按地址搜索 -->
 
@@ -266,6 +291,7 @@
                         android:id="@+id/checkBoxAdress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:text="取快递地址：" />
 
                     <Spinner
@@ -284,6 +310,7 @@
                     android:id="@+id/checkBoxTime2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     android:text="交接时间：" />
 
                 <LinearLayout
@@ -300,6 +327,7 @@
                         android:id="@+id/Edit_TaskDay2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:text="01" />
 
                     <TextView
@@ -307,12 +335,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="日，自"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textSize="12sp" />
 
                     <EditText
                         android:id="@+id/Edit_TaskStartTime2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:text="00" />
 
                     <TextView
@@ -320,12 +349,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="时至"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textSize="12sp" />
 
                     <EditText
                         android:id="@+id/Edit_TaskEndTime2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:text="00" />
 
                     <TextView
@@ -333,7 +363,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="时"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textSize="12sp" />
+                    
                 </LinearLayout>
                 <!-- 按地址搜索 -->
 
@@ -346,6 +377,7 @@
                         android:id="@+id/checkBoxAdress2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="12sp"
                         android:text="交接地址：" />
 
                     <Spinner
@@ -361,15 +393,24 @@
 
                 <Button
                     android:id="@+id/dosearch"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="搜索" />
+                
+                <ScrollView 
+                    android:layout_width="match_parent" 
+                    android:layout_height="match_parent" 
+                    android:scrollbars="vertical" 
+                    android:fadingEdge="vertical"
+                    android:background="#ededed">  
 
-                <ListView
-                    android:id="@+id/listmissions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-                </ListView>
+                    <ListView
+                        android:id="@+id/listmissions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+                    </ListView>
+                </ScrollView>
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
