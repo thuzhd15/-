@@ -25,6 +25,7 @@
                 android:id="@+id/widget_layout_red"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="15dp"
                 android:background="#ededed"
                 android:orientation="vertical" >
 
@@ -212,30 +213,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
-
-                <Spinner
-                    android:id="@+id/spinner_condition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <!-- 按时间搜索 -->
-
-                <CheckBox
-                    android:id="@+id/checkBoxTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:text="取快递时间：" />
-
+                                
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
+                    
+                    <CheckBox
+                    android:id="@+id/checkBoxTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="取货时间：" />
 
                     <Spinner
                         android:id="@+id/spinner_TaskMonth"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="35dp" />
 
                     <EditText
                         android:id="@+id/Edit_TaskDay"
@@ -249,38 +244,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="12sp"
-                        android:text="日，自" />
-
-                    <EditText
-                        android:id="@+id/Edit_TaskStartTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="00" />
-
-                    <TextView
-                        android:id="@+id/TaskStartTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="12sp"
-                        android:text="时至" />
-
-                    <EditText
-                        android:id="@+id/Edit_TaskEndTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="00" />
-
-                    <TextView
-                        android:id="@+id/TaskEndTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="时"
-                        android:textSize="12sp" />
-                    
+                        android:text="日" />
+                                       
                 </LinearLayout>
-                <!-- 按地址搜索 -->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -292,36 +258,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:text="取快递地址：" />
+                        android:text="取货地址：" />
 
                     <Spinner
                         android:id="@+id/mm_section"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="35dp" />
 
                     <Spinner
                         android:id="@+id/mm_address"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="35dp" />
                 </LinearLayout>
-                                <!-- 按时间搜索 -->
-
-                <CheckBox
-                    android:id="@+id/checkBoxTime2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:text="交接时间：" />
-
+                
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
+                    
+                    <CheckBox
+                    android:id="@+id/checkBoxTime2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="交货时间：" />
 
                     <Spinner
                         android:id="@+id/spinner_TaskMonth2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="35dp" />
 
                     <EditText
                         android:id="@+id/Edit_TaskDay2"
@@ -334,37 +299,9 @@
                         android:id="@+id/TaskDay2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="日，自"
+                        android:text="日"
                         android:textSize="12sp" />
-
-                    <EditText
-                        android:id="@+id/Edit_TaskStartTime2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="00" />
-
-                    <TextView
-                        android:id="@+id/TaskStartTime2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="时至"
-                        android:textSize="12sp" />
-
-                    <EditText
-                        android:id="@+id/Edit_TaskEndTime2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="00" />
-
-                    <TextView
-                        android:id="@+id/TaskEndTime2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="时"
-                        android:textSize="12sp" />
-                    
+                                        
                 </LinearLayout>
                 <!-- 按地址搜索 -->
 
@@ -378,32 +315,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:text="交接地址：" />
+                        android:text="交货地址：" />
 
                     <Spinner
                         android:id="@+id/mm_section2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="35dp" />
 
                     <Spinner
                         android:id="@+id/mm_address2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="35dp" />
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/dosearch"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="搜索" />
                 
+               <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" 
+                    android:paddingLeft="10dp">
+                    
+                    <Spinner
+                        android:id="@+id/spinner_condition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                    <ListView
-                        android:id="@+id/listmissions"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
-                    </ListView>
+                    <Button
+                        android:id="@+id/dosearch"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="搜索" />
+                                                  
+                </LinearLayout>               
+
+                <ListView
+                    android:id="@+id/listmissions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+                    
+                </ListView>
 
             </LinearLayout>
         </FrameLayout>
