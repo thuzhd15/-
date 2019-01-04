@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="我发布的"
+            android:text="我领取的"
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -28,9 +28,9 @@
 <ScrollView 
     android:layout_width="match_parent" 
     android:layout_height="match_parent" 
-    android:background="#ededed"
     android:scrollbars="vertical" 
-    android:fadingEdge="vertical"> 
+    android:fadingEdge="vertical"
+    android:background="#ededed">  
     
 <LinearLayout
     android:layout_width="match_parent"
@@ -38,7 +38,8 @@
     android:orientation="vertical" 
     android:background="#ffffff">
     
-   
+    
+    
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -58,7 +59,7 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="15dp" >
         
@@ -80,7 +81,7 @@
                 android:id="@+id/infoArriTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         
         </LinearLayout>
@@ -103,7 +104,7 @@
                 android:id="@+id/infoAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
@@ -126,7 +127,7 @@
                 android:id="@+id/infoRecipient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         
         </LinearLayout>
@@ -149,7 +150,7 @@
                 android:id="@+id/infoPhoneReci"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
         </LinearLayout> 
@@ -172,7 +173,7 @@
                 android:id="@+id/infoEvaluation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
         </LinearLayout>
@@ -221,34 +222,11 @@
                 android:id="@+id/infoCoinsNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
-        
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/frame" >
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"           
-                android:text="取货时间"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/infoOrderTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N/A"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-        
-        </LinearLayout>
-        
+               
         <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -267,7 +245,7 @@
                 android:id="@+id/infoOrderNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
@@ -290,9 +268,32 @@
                 android:id="@+id/task1_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/frame" >
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"           
+                android:text="取货时间"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/infoOrderTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        
         </LinearLayout>
         
         <LinearLayout 
@@ -306,14 +307,14 @@
                 android:id="@+id/textView17"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="取件地址"
+                android:text="取货地址"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
                 android:id="@+id/task1_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
@@ -336,7 +337,7 @@
                 android:id="@+id/task1_Tele"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
@@ -359,7 +360,7 @@
                 android:id="@+id/task1_State"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N/A"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
@@ -372,8 +373,8 @@
             <TextView
                 android:id="@+id/task1_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="努力加载中" />
+                android:layout_height="50dp"
+                android:text="任务描述" />
        
         </LinearLayout>
     
