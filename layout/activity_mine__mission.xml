@@ -398,19 +398,13 @@
                     android:gravity="center_horizontal"
                     android:text="搜索" />
                 
-                <ScrollView 
-                    android:layout_width="match_parent" 
-                    android:layout_height="match_parent" 
-                    android:scrollbars="vertical" 
-                    android:fadingEdge="vertical"
-                    android:background="#ededed">  
 
                     <ListView
                         android:id="@+id/listmissions"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="match_parent" >
                     </ListView>
-                </ScrollView>
+
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

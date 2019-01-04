@@ -54,83 +54,104 @@
 	
 	        <LinearLayout 
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="120dp"
                 android:orientation="horizontal"
-                android:gravity="center_vertical" >
+                android:gravity="center_vertical"
+                android:background="@drawable/frame" >
 
 	            <TextView
 				    android:id="@+id/text_address_1"
 				    android:layout_width="60dp"
-				    android:layout_height="60dp"
+				    android:layout_height="120dp"
 				    android:gravity="center_vertical"
 				    android:text="地址1" />
+	            
+	            <LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="120dp"
+	                android:orientation="vertical">
 
 			    <Spinner
 				    android:id="@+id/sp_section_1"
 				    android:textSize="12sp"
-				    android:layout_width="90bp"
+				    android:layout_width="match_parent"
 				    android:layout_height="wrap_content" />
 
 			    <Spinner
 				    android:id="@+id/sp_address_1"
 				    android:textSize="12sp"
-				    android:layout_width="90bp"
+				    android:layout_width="match_parent"
 				    android:layout_height="wrap_content" />
+			    
+			    </LinearLayout>
 			
 		    </LinearLayout>
 			
 		    <LinearLayout 
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="120dp"
                 android:orientation="horizontal"
-                android:gravity="center_vertical" >
+                android:gravity="center_vertical"
+                android:background="@drawable/frame" >
 
 				<TextView
 					android:id="@+id/text_address_2"
 					android:layout_width="60dp"
-					android:layout_height="60dp"
+					android:layout_height="120dp"
 					android:gravity="center_vertical"
 					android:text="地址2" />
+				
+				<LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="120dp"
+	                android:orientation="vertical">
 
 				<Spinner
 					android:id="@+id/sp_section_2"
 					android:textSize="12sp"
-					android:layout_width="90bp"
+					android:layout_width="match_parent"
 				    android:layout_height="wrap_content"  />
 
 				<Spinner
 					android:id="@+id/sp_address_2"
 					android:textSize="12sp"
-					android:layout_width="90bp"
+					android:layout_width="match_parent"
 				    android:layout_height="wrap_content"  />
-				
+				</LinearLayout>
 		    </LinearLayout>
 		
 		    <LinearLayout 
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="120dp"
                 android:orientation="horizontal"
+                android:background="@drawable/frame"
                 android:gravity="center_vertical" >
 
 				<TextView
 					android:id="@+id/text_address_3"
 					android:layout_width="60dp"
-					android:layout_height="60dp"
+					android:layout_height="120dp"
 					android:gravity="center_vertical"
+					
 					android:text="地址3" />
+				
+				<LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="120dp"
+	                android:orientation="vertical">
 
 				<Spinner
 					android:id="@+id/sp_section_3"
 					android:textSize="12sp"
-					android:layout_width="90bp"
+					android:layout_width="match_parent"
 				    android:layout_height="wrap_content"  />
 
 				<Spinner
 					android:id="@+id/sp_address_3"
 					android:textSize="12sp"
-					android:layout_width="90dp"
+					android:layout_width="match_parent"
 				    android:layout_height="wrap_content"  />
-				
+				</LinearLayout>
 		    </LinearLayout>
 		
 	    </LinearLayout>
@@ -139,7 +160,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical">"
 		
 		    <TextView
 				android:id="@+id/text_priority"
@@ -157,17 +178,17 @@
 				<RadioButton
 					android:id="@+id/rb_address_1"
 					android:layout_width="wrap_content"
-					android:layout_height="60dp" />
+					android:layout_height="120dp" />
 				
 				<RadioButton
 					android:id="@+id/rb_address_2"
 					android:layout_width="wrap_content"
-					android:layout_height="60dp" />
+					android:layout_height="120dp" />
 				
 				<RadioButton
 					android:id="@+id/rb_address_3"
 					android:layout_width="wrap_content"
-					android:layout_height="60dp" />
+					android:layout_height="120dp" />
 				
 			</RadioGroup>
 		    
